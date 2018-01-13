@@ -26,14 +26,25 @@ public class GuestBook implements ActionListener {
 	JButton readNameButton = new JButton();
 	JButton addNameButton = new JButton();
 
-	ArrayList<String> guestList = new ArrayList<>();
+	String userInputtedName;
 
+	ArrayList<String> guestList = new ArrayList<>();
+	ArrayList<String> bannedGuestList = new ArrayList<>();
+	
+	public void bannedGuests() {
+		bannedGuestList.add("Isis Jenkins");
+		bannedGuestList.add("Michiyo Oguri");
+		bannedGuestList.add("he");
+	}
+	
+	
 	public static void main(String[] args) {
 		GuestBook thisClass = new GuestBook();
 		thisClass.createUI();
-
+		
 	}
-
+	
+	
 	public void createUI() {
 		frame.add(panel);
 		frame.setTitle("Guest Book");
@@ -43,20 +54,37 @@ public class GuestBook implements ActionListener {
 		addNameButton.setText("Add Name");
 
 		addNameButton.addActionListener(this);
+		readNameButton.addActionListener(this);
 		frame.setVisible(true);
 		frame.pack();
-
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonClicked = (JButton) e.getSource();
 		if (buttonClicked == addNameButton) {
-			String userInputtedName = JOptionPane.showInputDialog("Please add a name.");
+			userInputtedName = JOptionPane.showInputDialog("Please add a name.");
+			//if(bannedGuestList.contains(userInputtedName)) {
+				JOptionPane.showMessageDialog(null, "This person is banned from our guestlist.");
+			//} else {
 			guestList.add(userInputtedName);
+			//}
+			System.out.println(bannedGuestList);
 		}
+		
 		if (buttonClicked == readNameButton) {
-			guestList.toString();
+			JOptionPane.showMessageDialog(null, simplyWrittenArray(guestList));
 		}
+
 	}
 
+	public String simplyWrittenArray(ArrayList<String> list) {
+		String toDisplay = "";
+		for (int i = 0; i < guestList.size(); i++) {
+			int iPlusOne = i + 1;
+			toDisplay = toDisplay + "Guest #" + iPlusOne + ": " + list.get(i) + "\n";
+		}
+		return toDisplay;
+
+	}
+	
 }
