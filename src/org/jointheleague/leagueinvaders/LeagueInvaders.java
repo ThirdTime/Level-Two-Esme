@@ -10,6 +10,7 @@ public class LeagueInvaders {
 	final int FRAME_LENGTH = 800;
 	GamePanel gamePanel = new GamePanel();
 	
+	//also a test hi
 	public LeagueInvaders(){
 		frame = new JFrame();
 		frame.setSize(FRAME_WIDTH, FRAME_LENGTH);
