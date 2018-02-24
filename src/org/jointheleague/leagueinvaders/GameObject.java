@@ -7,6 +7,7 @@ public class GameObject {
     int y;
     int width;
     int height;
+    boolean isAlive;
     
     //hi! this is a test
 	public GameObject(int x, int y, int width, int height) {

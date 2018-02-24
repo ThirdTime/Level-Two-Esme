@@ -10,20 +10,31 @@ public class Rocketship extends GameObject {
 	//rocketship method by 5. This should move the ship
 	//side to side. No, I don't know what the speed method is for.
 
-	private int speed = x;
+	private int xSpeed;
+	private int ySpeed;
 
-	public Rocketship(int speed, int x, int y, int width, int height) {
+	public Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		this.speed = speed;
-		this.x = x;
-		
-	}
-		public void setSpeed(int howFastDoYouWantToZoomZoom) {
-		this.speed = howFastDoYouWantToZoomZoom;
+		xSpeed = 0;
+		ySpeed = 0;
 	}
 	
+	//	public void setSpeed(int mySpeed) {
+		//	speed = speed + mySpeed;
+//	}
+	
 	public void update() {
+		x = x + xSpeed;
+		y = y + ySpeed;
 		
+	}
+	
+	public void setXSpeed(int newXSpeed) {
+		xSpeed = newXSpeed;
+	}
+	
+	public void setYSpeed(int newYSpeed) {
+		ySpeed = newYSpeed;
 	}
 	
 	public void draw(Graphics g) {
