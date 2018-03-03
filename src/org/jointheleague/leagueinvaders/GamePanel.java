@@ -37,6 +37,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		manager.update();
+		manager.purgeObjects();
+		//kill the younglings
 	}
 
 	void updateEndState() {
@@ -109,7 +111,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		repaint();
 
 	//	rocket.update();
-
+		
 		if (currentState == MENU_STATE) {
 
 			updateMenuState();
@@ -166,28 +168,28 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 
 		if (e.getKeyCode() == 37) {
-			System.out.println("L PRESSED");
+		//	System.out.println("L PRESSED");
 			rocket.setXSpeed(-5);
 		}
 
 		if (e.getKeyCode() == 39) {
-			System.out.println("R PRESSED");
+		//	System.out.println("R PRESSED");
 			rocket.setXSpeed(5);
 		}
 
 		if (e.getKeyCode() == 38) {
-			System.out.println("U PRESSED");
+		//	System.out.println("U PRESSED");
 			rocket.setYSpeed(-5);
 		}
 
 		if (e.getKeyCode() == 40) {
-			System.out.println("D PRESSED");
+		//	System.out.println("D PRESSED");
 			rocket.setYSpeed(5);
 		}
 		
 		if(e.getKeyCode() == 32) {
-			System.out.println("space bar has been pressed!");
-			manager.addProjectile(new Projectile(rocket.x, rocket.y, 10, 10));
+		//	System.out.println("space bar has been pressed!");
+			manager.addProjectile(new Projectile(rocket.getxRocketPos(), rocket.getyRocketPos(), 10, 10));
 		}
 
 	}
@@ -195,22 +197,22 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == 37) {
-			System.out.println("L R");
+		//	System.out.println("L R");
 			rocket.setXSpeed(0);
 		}
 
 		if (e.getKeyCode() == 39) {
-			System.out.println("R R");
+		//	System.out.println("R R");
 			rocket.setXSpeed(0);
 		}
 		
 		if (e.getKeyCode() == 38) {
-			System.out.println("U R");
+		//	System.out.println("U R");
 			rocket.setYSpeed(0);
 		}
 
 		if (e.getKeyCode() == 40) {
-			System.out.println("D R");
+		//	System.out.println("D R");
 			rocket.setYSpeed(0);
 		}
 

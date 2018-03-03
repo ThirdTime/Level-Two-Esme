@@ -5,11 +5,9 @@ import java.awt.Graphics;
 
 public class Rocketship extends GameObject {
 	
-	//here's what you need to do: use the keypressed +
-	//keyReleased methods to subtract or add respectively the x variable of the 
-	//rocketship method by 5. This should move the ship
-	//side to side. No, I don't know what the speed method is for.
-
+	private int xRocketPos;
+	private int yRocketPos;
+	
 	private int xSpeed;
 	private int ySpeed;
 
@@ -17,15 +15,23 @@ public class Rocketship extends GameObject {
 		super(x, y, width, height);
 		xSpeed = 0;
 		ySpeed = 0;
+		xRocketPos = x;
+		yRocketPos = y;
 	}
 	
-	//	public void setSpeed(int mySpeed) {
-		//	speed = speed + mySpeed;
-//	}
+	public int getxRocketPos () {
+		return xRocketPos;
+	}
+	
+	public int getyRocketPos () {
+		return yRocketPos;
+	}
 	
 	public void update() {
 		x = x + xSpeed;
+		xRocketPos = x + 20;
 		y = y + ySpeed;
+		yRocketPos = y + 17;
 		
 	}
 	

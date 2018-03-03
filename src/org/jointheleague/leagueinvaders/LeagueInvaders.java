@@ -1,12 +1,19 @@
 package org.jointheleague.leagueinvaders;
 
+//THE WEBSITE:
+/** https://league-level2.github.io */
+//LEAGUE INVADERS STEPS:
+/** https://league-level2.github.io/league_invaders_contents */
+//THE GAME ITSELF:
+/** https://league-level2.github.io/league_invaders_demo */
+
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
 public class LeagueInvaders {
 	JFrame frame;
-	final int FRAME_WIDTH = 500;
+	final static int FRAME_WIDTH = 500;
 	final int FRAME_LENGTH = 800;
 	GamePanel gamePanel = new GamePanel();
 	
