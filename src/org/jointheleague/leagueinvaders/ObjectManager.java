@@ -10,37 +10,23 @@ public class ObjectManager {
 	private int enemySpawnTime;
 
 	Rocketship rocket;
+	Projectile bullet;
+	private int score = 0;
+	
+	public int getScore(){
+		return score;
+	}
+	
 	ArrayList<Projectile> projectileObjectsList = new ArrayList<>();
 
 	public void addProjectile(Projectile projectile) {
 		projectileObjectsList.add(projectile);
 	}
 
-	Alien alien;
 	ArrayList<Alien> alienObjectsList = new ArrayList<>();
 
 	public void addAlien(Alien alien) {
 		alienObjectsList.add(alien);
-	}
-
-	public ObjectManager(Rocketship r) {
-		rocket = r;
-	}
-
-	public void update() {
-		rocket.update();
-
-		for (int i = 0; i < projectileObjectsList.size(); i++) {
-			projectileObjectsList.get(i).update();
-		}
-	}
-
-	public void draw(Graphics g) {
-		rocket.draw(g);
-
-		for (int i = 0; i < projectileObjectsList.size(); i++) {
-			projectileObjectsList.get(i).draw(g);
-		}
 	}
 
 	public void manageEnemies() {
@@ -50,14 +36,65 @@ public class ObjectManager {
 		}
 	}
 
-	public void purgeObjects() {
-		System.out.println("purge objects is running :-)");
-		for(int i = projectileObjectsList.size(); i > 0; i--) {
-			System.out.println("the calm before the crash: Index " + i + " Size: " + projectileObjectsList.size());
-			//if (projectileObjectsList.get(i).isAlive == false) {
-		//		projectileObjectsList.remove(i);
-		//		System.out.println("you is dead");
-		//	}
+	public ObjectManager(Rocketship r) {
+		rocket = r;
+	}
+
+	public void update() {
+		rocket.update();
+		
+		for (int i = 0; i < alienObjectsList.size(); i++) {
+			alienObjectsList.get(i).update();
+		}
+		
+		for (int i = 0; i < projectileObjectsList.size(); i++) {
+			projectileObjectsList.get(i).update();
 		}
 	}
+
+	public void draw(Graphics g) {
+		rocket.draw(g);
+
+		for (int i = 0; i < alienObjectsList.size(); i++) {
+			alienObjectsList.get(i).draw(g);
+		}
+		
+		for (int i = 0; i < projectileObjectsList.size(); i++) {
+			projectileObjectsList.get(i).draw(g);
+		}
+	}
+
+	public void purgeObjects() {
+		for (int i = projectileObjectsList.size() - 1; i >= 0; i--) {
+			if (projectileObjectsList.get(i).isAlive == false) {
+				projectileObjectsList.remove(i);
+			}
+		}
+		
+		for (int i = alienObjectsList.size() - 1; i >= 0; i--) {
+			if (alienObjectsList.get(i).isAlive == false) {
+				alienObjectsList.remove(i);
+			}
+		}
+		
+	}
+	
+	public void checkCollision(){
+		for(Alien a : alienObjectsList){
+	        if(rocket.collisionBox.intersects(a.collisionBox)){
+	                rocket.isAlive = false;
+	                System.out.println("Rocket dead");
+	        }  
+	        for(Projectile p : projectileObjectsList){
+	        		if(p.collisionBox.intersects(a.collisionBox)){
+	        			a.isAlive = false;
+	        			p.isAlive = false;
+	        			score = score + 1;
+	        			System.out.println("Alien dead");
+	        		}
+	        }
+		}
+	}
+	
+	
 }

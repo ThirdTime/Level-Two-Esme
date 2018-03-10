@@ -38,7 +38,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		manager.update();
 		manager.purgeObjects();
-		//kill the younglings
+		manager.manageEnemies();
+		manager.checkCollision();
+		
+		if(!rocket.isAlive){
+			currentState = END_STATE;
+		}
 	}
 
 	void updateEndState() {
@@ -83,7 +88,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		g.setFont(textEnemiesKilled);
 		g.setColor(Color.BLACK);
-		g.drawString("You killed [x many] enemies", 30, 350);
+		g.drawString("You killed " + manager.getScore() + " enemies", 50, 350);
 
 		g.setFont(textPressEnterToRestart);
 		g.setColor(Color.BLACK);

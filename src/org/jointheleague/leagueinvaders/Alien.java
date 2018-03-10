@@ -5,13 +5,16 @@ import java.awt.Graphics;
 
 public class Alien extends GameObject {
 
+	private int speed;
 	public Alien(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		
+		speed = 3;
 	}
 	
 	public void update() {
-		y = y + 1;
+		super.update();
+		y = y + speed;
 	}
 	
 	public void draw (Graphics g) {
