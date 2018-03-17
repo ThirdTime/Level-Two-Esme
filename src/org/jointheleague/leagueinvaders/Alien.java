@@ -15,11 +15,14 @@ public class Alien extends GameObject {
 	public void update() {
 		super.update();
 		y = y + speed;
+		
+		if(y > 800){
+			isAlive = false;
+		}
 	}
 	
 	public void draw (Graphics g) {
-		g.setColor(new Color(238, 221, 130));
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.alienImg, x, y, width, height, null);
 	}
 
 }

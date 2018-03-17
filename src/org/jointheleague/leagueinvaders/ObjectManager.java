@@ -7,7 +7,7 @@ import java.util.Random;
 public class ObjectManager {
 
 	private long enemyTimer = 0;
-	private int enemySpawnTime;
+	private int enemySpawnTime = 600;
 
 	Rocketship rocket;
 	Projectile bullet;
@@ -83,14 +83,12 @@ public class ObjectManager {
 		for(Alien a : alienObjectsList){
 	        if(rocket.collisionBox.intersects(a.collisionBox)){
 	                rocket.isAlive = false;
-	                System.out.println("Rocket dead");
 	        }  
 	        for(Projectile p : projectileObjectsList){
 	        		if(p.collisionBox.intersects(a.collisionBox)){
 	        			a.isAlive = false;
 	        			p.isAlive = false;
 	        			score = score + 1;
-	        			System.out.println("Alien dead");
 	        		}
 	        }
 		}
