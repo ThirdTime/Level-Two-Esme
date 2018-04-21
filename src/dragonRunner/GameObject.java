@@ -20,7 +20,7 @@ public class GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.fillRect(x, y, 50, 50);
+		
 	}
 
 }

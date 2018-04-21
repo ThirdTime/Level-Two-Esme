@@ -32,11 +32,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage tempiWinState;
 	public static BufferedImage tempiGameState;
 	
-	
-
+	Cloud cloud = new Cloud(200, 200, 200, 200);
+	ObjectManagerK manager = new ObjectManagerK();
 	public GamePanel() {
 		gameTimer = new Timer(1000 / 60, this);
-		// gameObject = new GameObject(10, 10, 40, 40);
+		
 		
 		try {
 			tempiArrowState = ImageIO.read(this.getClass().getResourceAsStream("tempImgArrowState.png"));
@@ -72,10 +72,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	/////////////////////////////////////////////
 
 	public void updateGameState() {
-
+		manager.update();
 	}
 
 	public void drawGameState(Graphics g) {
+		manager.draw(g);
 		g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, dragonRunnerMain.FRAME_WIDTH, dragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
