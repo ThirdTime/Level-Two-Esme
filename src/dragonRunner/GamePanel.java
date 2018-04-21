@@ -32,7 +32,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage tempiWinState;
 	public static BufferedImage tempiGameState;
 	
-	Cloud cloud = new Cloud(200, 200, 200, 200);
 	ObjectManagerK manager = new ObjectManagerK();
 	public GamePanel() {
 		gameTimer = new Timer(1000 / 60, this);
