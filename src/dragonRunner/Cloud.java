@@ -14,13 +14,16 @@ public class Cloud extends GameObject {
 	}
 
 	public void update() {
-		y = y - cloudSpeed;
+		x = x - cloudSpeed;
 		super.update();
 	}
 
 	public void draw(Graphics g) {
 		g.setColor(Color.BLUE);
-		g.fillRect(x, y, 10, 10);
+		g.fillRect(x, y, width, height);
 	}
 
 }
+
+
+
