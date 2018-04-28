@@ -43,6 +43,14 @@ public class ObjectManagerK {
 			addGroundToList(new Ground(firstGround.x + firstGround.width, dragonRunnerMain.FRAME_HEIGHT - 150, 300, dragonRunnerMain.FRAME_HEIGHT));
 		}
 	}
+	
+	//TO DO:
+	//the ground array list isn't adding grounds for some reason?
+	//this week's challenge: figure it out!
+	//at least the first ground is showing up...
+	//but you should also make it that the first ground generated is part of the array loop
+	//that would make more sense
+	//good luck!
 
 //UPDATE AND DRAW:
 	public void update() {
