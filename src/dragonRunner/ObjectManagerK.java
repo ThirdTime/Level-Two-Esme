@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.jointheleague.leagueinvaders.Rocketship;
-
 public class ObjectManagerK {
 	
 //THE CLOUDS:
