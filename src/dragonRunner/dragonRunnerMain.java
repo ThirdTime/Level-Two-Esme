@@ -10,8 +10,8 @@ public class dragonRunnerMain {
 	JFrame frame;
 	GamePanel gamePanel;
 	
-	final static int FRAME_WIDTH = 900;
-	final static int FRAME_HEIGHT = 400;
+	final static int FRAME_WIDTH = 1000;
+	final static int FRAME_HEIGHT = 450;
 	
 	public dragonRunnerMain (){
 		frame = new JFrame();
