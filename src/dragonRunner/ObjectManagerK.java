@@ -43,7 +43,6 @@ public class ObjectManagerK {
 
 		Ground lastGroundOnScreen = groundList.get(groundList.size() - 1);
 		if (lastGroundOnScreen.x + lastGroundOnScreen.width < dragonRunnerMain.FRAME_WIDTH) {
-			System.out.println("adding a ground");
 			addGroundToList(new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width,
 					dragonRunnerMain.FRAME_HEIGHT - 150, 300, dragonRunnerMain.FRAME_HEIGHT));
 		}
@@ -75,6 +74,10 @@ public class ObjectManagerK {
 		loopGround();
 		fireArrows();
 		
+		this.purgeObjects(groundList);
+		this.purgeObjects(arrowList);
+		this.purgeObjects(cloudList);
+		
 		for (int i = 0; i < cloudList.size(); i++) {
 			cloudList.get(i).update();
 		}
@@ -101,4 +104,15 @@ public class ObjectManagerK {
 			arrowList.get(i).draw(g);
 		}
 	}
+	
+	// MISC METHODS
+	//	PURGE OBJECTS
+		public void purgeObjects(ArrayList <? extends GameObject> list) {
+			for (int i = list.size() - 1; i >= 0; i--) {
+				if (list.get(i).isAlive == false) {
+						list.remove(i);
+				}
+			}
+		}
+		
 }
