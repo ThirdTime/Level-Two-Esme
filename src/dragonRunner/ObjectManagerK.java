@@ -23,8 +23,8 @@ public class ObjectManagerK {
 		int cloudGeneratorPause = re;
 
 		if (System.currentTimeMillis() - lastCloudCreated >= cloudGeneratorPause) {
-			addCloudToList(new Cloud(dragonRunnerMain.FRAME_WIDTH,
-					new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2), 60, 40));
+			addCloudToList(
+					new Cloud(dragonRunnerMain.FRAME_WIDTH, new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastCloudCreated = System.currentTimeMillis();
 		}
 	}
@@ -38,13 +38,13 @@ public class ObjectManagerK {
 
 	public void loopGround() {
 		if (groundList.size() == 0) {
-			addGroundToList(new Ground(0, dragonRunnerMain.FRAME_HEIGHT - 150, 300, dragonRunnerMain.FRAME_HEIGHT));
+			addGroundToList(new Ground(0, dragonRunnerMain.FRAME_HEIGHT - 150));
 		}
 
 		Ground lastGroundOnScreen = groundList.get(groundList.size() - 1);
 		if (lastGroundOnScreen.x + lastGroundOnScreen.width < dragonRunnerMain.FRAME_WIDTH) {
-			addGroundToList(new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width,
-					dragonRunnerMain.FRAME_HEIGHT - 150, 300, dragonRunnerMain.FRAME_HEIGHT));
+			addGroundToList(
+					new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width, dragonRunnerMain.FRAME_HEIGHT - 150));
 		}
 	}
 
@@ -62,9 +62,27 @@ public class ObjectManagerK {
 		int arrowPause = r;
 
 		if (System.currentTimeMillis() - lastArrowFired >= arrowPause) {
-			addArrowToList(new Arrow(dragonRunnerMain.FRAME_WIDTH,
-					new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2), 80, 10));
+			addArrowToList(
+					new Arrow(dragonRunnerMain.FRAME_WIDTH, new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastArrowFired = System.currentTimeMillis();
+		}
+	}
+
+	// THE SPIKES:
+	public long lastSpikeGenerated = 0;
+	ArrayList<Spikes> spikesList = new ArrayList<>();
+
+	int spikeScrollPause = 3000;
+
+	public void addSpikeToList(Spikes spike) {
+		spikesList.add(spike);
+	}
+
+	public void generateSpikes() {
+		if (System.currentTimeMillis() - lastSpikeGenerated >= spikeScrollPause) {
+			addSpikeToList(new Spikes(dragonRunnerMain.FRAME_WIDTH,
+					dragonRunnerMain.FRAME_HEIGHT -180, 50, 50));
+			lastSpikeGenerated = System.currentTimeMillis();
 		}
 	}
 
@@ -73,20 +91,24 @@ public class ObjectManagerK {
 		generateClouds();
 		loopGround();
 		fireArrows();
+		generateSpikes();
 
 		this.purgeObjects(groundList);
 		this.purgeObjects(arrowList);
 		this.purgeObjects(cloudList);
-
+		this.purgeObjects(spikesList);
+		
 		this.updateArrayList(cloudList);
 		this.updateArrayList(groundList);
 		this.updateArrayList(arrowList);
+		this.updateArrayList(spikesList);
 	}
 
 	public void draw(Graphics g) {
 		this.drawArrayList(arrowList, g);
 		this.drawArrayList(cloudList, g);
 		this.drawArrayList(groundList, g);
+		this.drawArrayList(spikesList, g);
 	}
 
 	// MISC METHODS

@@ -6,8 +6,8 @@ import java.awt.Graphics;
 public class Ground extends GameObject {
 	private int groundMoveSpeed;
 
-	public Ground(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public Ground(int x, int y) {
+		super(x, y, 300, dragonRunnerMain.FRAME_HEIGHT);
 		groundMoveSpeed = 4;
 	}
 	
