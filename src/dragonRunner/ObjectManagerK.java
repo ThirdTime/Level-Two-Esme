@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ObjectManagerK {
-	
+
 	// THE CLOUDS:
 	private long lastCloudCreated = 0;
 
@@ -21,7 +21,7 @@ public class ObjectManagerK {
 	public void generateClouds() {
 		int re = new Random().nextInt(500000);
 		int cloudGeneratorPause = re;
-		
+
 		if (System.currentTimeMillis() - lastCloudCreated >= cloudGeneratorPause) {
 			addCloudToList(new Cloud(dragonRunnerMain.FRAME_WIDTH,
 					new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2), 60, 40));
@@ -50,69 +50,67 @@ public class ObjectManagerK {
 
 	// THE ARROWS:
 	public long lastArrowFired = 0;
-	
-	
+
 	ArrayList<Arrow> arrowList = new ArrayList<>();
 
 	public void addArrowToList(Arrow arrow) {
 		arrowList.add(arrow);
 	}
-	
+
 	public void fireArrows() {
 		int r = new Random().nextInt(1500) + 3000;
 		int arrowPause = r;
-		
-		if(System.currentTimeMillis()- lastArrowFired >= arrowPause) {
-			addArrowToList(new Arrow(dragonRunnerMain.FRAME_WIDTH, new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT/2), 80, 10));
+
+		if (System.currentTimeMillis() - lastArrowFired >= arrowPause) {
+			addArrowToList(new Arrow(dragonRunnerMain.FRAME_WIDTH,
+					new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2), 80, 10));
 			lastArrowFired = System.currentTimeMillis();
 		}
 	}
-	
+
 	// UPDATE AND DRAW:
 	public void update() {
 		generateClouds();
 		loopGround();
 		fireArrows();
-		
+
 		this.purgeObjects(groundList);
 		this.purgeObjects(arrowList);
 		this.purgeObjects(cloudList);
-		
-		for (int i = 0; i < cloudList.size(); i++) {
-			cloudList.get(i).update();
-		}
 
-		for (int i = 0; i < groundList.size(); i++) {
-			groundList.get(i).update();
-		}
-		
-		for (int i = 0; i < arrowList.size(); i++) {
-			arrowList.get(i).update();
-		}
+		this.updateArrayList(cloudList);
+		this.updateArrayList(groundList);
+		this.updateArrayList(arrowList);
 	}
 
 	public void draw(Graphics g) {
-		for (int i = 0; i < cloudList.size(); i++) {
-			cloudList.get(i).draw(g);
-		}
-
-		for (int i = 0; i < groundList.size(); i++) {
-			groundList.get(i).draw(g);
-		}
-		
-		for (int i = 0; i < arrowList.size(); i++) {
-			arrowList.get(i).draw(g);
-		}
+		this.drawArrayList(arrowList, g);
+		this.drawArrayList(cloudList, g);
+		this.drawArrayList(groundList, g);
 	}
-	
+
 	// MISC METHODS
-	//	PURGE OBJECTS
-		public void purgeObjects(ArrayList <? extends GameObject> list) {
-			for (int i = list.size() - 1; i >= 0; i--) {
-				if (list.get(i).isAlive == false) {
-						list.remove(i);
-				}
+	// PURGE OBJECTS
+	public void purgeObjects(ArrayList<? extends GameObject> list) {
+		for (int i = list.size() - 1; i >= 0; i--) {
+			if (list.get(i).isAlive == false) {
+				list.remove(i);
 			}
 		}
-		
+	}
+
+	// UPDATE ARRAY LIST
+	public void updateArrayList(ArrayList<? extends GameObject> arl) {
+		for (int i = 0; i < arl.size(); i++) {
+			arl.get(i).update();
+		}
+	}
+
+	// DRAW ARRAY LIST
+	public void drawArrayList(ArrayList<? extends GameObject> arl, Graphics g) {
+		for (int i = 0; i < arl.size(); i++) {
+			arl.get(i).draw(g);
+		}
+	}
+
 }
