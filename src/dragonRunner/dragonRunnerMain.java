@@ -34,12 +34,3 @@ public class dragonRunnerMain {
 		gamePanel.startGame();
 	}
 }
-
-
-/*
- * creating a To-Do list!
- * 1. Make the clouds move
- * 2. Figure out what an object manager is
- * 
- * 
- */

@@ -16,6 +16,10 @@ public class Cloud extends GameObject {
 	public void update() {
 		x = x - cloudSpeed;
 		super.update();
+		
+		if(x + width <= 0){
+			isAlive = false;
+		}
 	}
 
 	public void draw(Graphics g) {

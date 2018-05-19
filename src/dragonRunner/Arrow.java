@@ -17,6 +17,10 @@ public class Arrow extends GameObject {
 	public void update() {
 		x = x - arrowSpeed;
 		super.update();
+		
+		if(x + width <= 0){
+			isAlive = false;
+		}
 	}
 
 	public void draw(Graphics g) {
