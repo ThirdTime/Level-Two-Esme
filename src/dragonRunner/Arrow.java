@@ -7,8 +7,8 @@ public class Arrow extends GameObject {
 
 	private int arrowSpeed;
 
-	public Arrow(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public Arrow(int x, int y) {
+		super(x, y, 80, 10);
 
 		arrowSpeed = 4;
 
