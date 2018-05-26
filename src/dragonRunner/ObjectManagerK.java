@@ -58,7 +58,7 @@ public class ObjectManagerK {
 	}
 
 	public void fireArrows() {
-		int r = new Random().nextInt(1500) + 3000;
+		int r = new Random().nextInt(100000) + 2000;
 		int arrowPause = r;
 
 		if (System.currentTimeMillis() - lastArrowFired >= arrowPause) {
@@ -72,7 +72,8 @@ public class ObjectManagerK {
 	public long lastSpikeGenerated = 0;
 	ArrayList<Spikes> spikesList = new ArrayList<>();
 
-	int spikeScrollPause = 3000;
+	int spikeScrollPause = new Random().nextInt(1500) + 3000;
+
 
 	public void addSpikeToList(Spikes spike) {
 		spikesList.add(spike);
@@ -80,8 +81,7 @@ public class ObjectManagerK {
 
 	public void generateSpikes() {
 		if (System.currentTimeMillis() - lastSpikeGenerated >= spikeScrollPause) {
-			addSpikeToList(new Spikes(dragonRunnerMain.FRAME_WIDTH,
-					dragonRunnerMain.FRAME_HEIGHT -180, 50, 50));
+			addSpikeToList(SpikeFactory.getRandomSpike());
 			lastSpikeGenerated = System.currentTimeMillis();
 		}
 	}
