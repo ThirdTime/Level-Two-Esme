@@ -158,6 +158,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 
+		if (e.getKeyCode() == 38){
+			//that's the up arrow
+			
+		}
+		
 		if (e.getKeyCode() == 83) {
 			// that's [s]
 			if (currentState == MENU_STATE) {

@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class ObjectManagerK {
 
+	Dragon dragon = new Dragon(50, 50, 50, 50);
+	
 	// THE CLOUDS:
 	private long lastCloudCreated = 0;
 
@@ -88,6 +90,7 @@ public class ObjectManagerK {
 
 	// UPDATE AND DRAW:
 	public void update() {
+		dragon.update();
 		generateClouds();
 		loopGround();
 		fireArrows();
@@ -105,6 +108,8 @@ public class ObjectManagerK {
 	}
 
 	public void draw(Graphics g) {
+		dragon.draw(g);
+		
 		this.drawArrayList(arrowList, g);
 		this.drawArrayList(cloudList, g);
 		this.drawArrayList(groundList, g);
