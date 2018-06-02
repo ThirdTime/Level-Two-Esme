@@ -72,6 +72,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void updateGameState() {
 		manager.update();
+		if(manager.dragon.struckByArrow){
+			currentState = END_STATE_ARROW;
+		}
+		
+		if(manager.dragon.struckBySpike){
+			currentState = END_STATE_SPIKE;
+		}
 	}
 
 	public void drawGameState(Graphics g) {

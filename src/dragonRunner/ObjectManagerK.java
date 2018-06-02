@@ -7,20 +7,20 @@ import java.util.Random;
 
 public class ObjectManagerK {
 
-	Dragon dragon = new Dragon(80, 100, 70, 70);
-	
-	public void dragonUp(){
+	Dragon dragon = new Dragon(80, 100);
+
+	public void dragonUp() {
 		dragon.flyUp();
 	}
-	
-	public void dragonDown(){
+
+	public void dragonDown() {
 		dragon.flyDown();
 	}
-	
-	public void dragonStop(){
+
+	public void dragonStop() {
 		dragon.ySpeed = 0;
 	}
-	
+
 	// THE CLOUDS:
 	private long lastCloudCreated = 0;
 
@@ -88,7 +88,6 @@ public class ObjectManagerK {
 
 	int spikeScrollPause = new Random().nextInt(1500) + 3000;
 
-
 	public void addSpikeToList(Spikes spike) {
 		spikesList.add(spike);
 	}
@@ -100,6 +99,25 @@ public class ObjectManagerK {
 		}
 	}
 
+	// COLLISIONS:
+	public void checkCollisions() {
+		System.out.println("checking");
+		for (Arrow a : arrowList) {
+			if (dragon.collisionBox.intersects(a.collisionBox)) {
+				System.out.println("intersected arrow");
+				dragon.isAlive = false;
+				dragon.struckByArrow = true;
+			}
+		}
+		for (Spikes s : spikesList) {
+			if (dragon.collisionBox.intersects(s.collisionBox)) {
+				System.out.println("intersected spike");
+				dragon.isAlive = false;
+				dragon.struckBySpike = true;
+			}
+		}
+	}
+
 	// UPDATE AND DRAW:
 	public void update() {
 		dragon.update();
@@ -107,12 +125,13 @@ public class ObjectManagerK {
 		loopGround();
 		fireArrows();
 		generateSpikes();
+		checkCollisions();
 
 		this.purgeObjects(groundList);
 		this.purgeObjects(arrowList);
 		this.purgeObjects(cloudList);
 		this.purgeObjects(spikesList);
-		
+
 		this.updateArrayList(cloudList);
 		this.updateArrayList(groundList);
 		this.updateArrayList(arrowList);
@@ -121,7 +140,7 @@ public class ObjectManagerK {
 
 	public void draw(Graphics g) {
 		dragon.draw(g);
-		
+
 		this.drawArrayList(arrowList, g);
 		this.drawArrayList(cloudList, g);
 		this.drawArrayList(groundList, g);

@@ -9,14 +9,14 @@ public class Arrow extends GameObject {
 
 	public Arrow(int x, int y) {
 		super(x, y, 80, 10);
-
 		arrowSpeed = 4;
 
 	}
 
 	public void update() {
-		x = x - arrowSpeed;
 		super.update();
+		x = x - arrowSpeed;
+		
 		
 		if(x + width <= 0){
 			isAlive = false;
