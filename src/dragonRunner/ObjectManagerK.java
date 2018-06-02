@@ -7,7 +7,19 @@ import java.util.Random;
 
 public class ObjectManagerK {
 
-	Dragon dragon = new Dragon(50, 50, 50, 50);
+	Dragon dragon = new Dragon(80, 100, 70, 70);
+	
+	public void dragonUp(){
+		dragon.flyUp();
+	}
+	
+	public void dragonDown(){
+		dragon.flyDown();
+	}
+	
+	public void dragonStop(){
+		dragon.ySpeed = 0;
+	}
 	
 	// THE CLOUDS:
 	private long lastCloudCreated = 0;
@@ -26,7 +38,7 @@ public class ObjectManagerK {
 
 		if (System.currentTimeMillis() - lastCloudCreated >= cloudGeneratorPause) {
 			addCloudToList(
-					new Cloud(dragonRunnerMain.FRAME_WIDTH, new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2)));
+					new Cloud(DragonRunnerMain.FRAME_WIDTH, new Random().nextInt(DragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastCloudCreated = System.currentTimeMillis();
 		}
 	}
@@ -40,13 +52,13 @@ public class ObjectManagerK {
 
 	public void loopGround() {
 		if (groundList.size() == 0) {
-			addGroundToList(new Ground(0, dragonRunnerMain.FRAME_HEIGHT - 150));
+			addGroundToList(new Ground(0, DragonRunnerMain.FRAME_HEIGHT - 150));
 		}
 
 		Ground lastGroundOnScreen = groundList.get(groundList.size() - 1);
-		if (lastGroundOnScreen.x + lastGroundOnScreen.width < dragonRunnerMain.FRAME_WIDTH) {
+		if (lastGroundOnScreen.x + lastGroundOnScreen.width < DragonRunnerMain.FRAME_WIDTH) {
 			addGroundToList(
-					new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width, dragonRunnerMain.FRAME_HEIGHT - 150));
+					new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width, DragonRunnerMain.FRAME_HEIGHT - 150));
 		}
 	}
 
@@ -65,7 +77,7 @@ public class ObjectManagerK {
 
 		if (System.currentTimeMillis() - lastArrowFired >= arrowPause) {
 			addArrowToList(
-					new Arrow(dragonRunnerMain.FRAME_WIDTH, new Random().nextInt(dragonRunnerMain.FRAME_HEIGHT / 2)));
+					new Arrow(DragonRunnerMain.FRAME_WIDTH, new Random().nextInt(DragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastArrowFired = System.currentTimeMillis();
 		}
 	}

@@ -33,9 +33,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage tempiGameState;
 	
 	ObjectManagerK manager = new ObjectManagerK();
+	
 	public GamePanel() {
 		gameTimer = new Timer(1000 / 60, this);
-		
 		
 		try {
 			tempiArrowState = ImageIO.read(this.getClass().getResourceAsStream("tempImgArrowState.png"));
@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawMenuState(Graphics g) {
-		g.drawImage(GamePanel.tempiMenuState, WIDTH, HEIGHT, dragonRunnerMain.FRAME_WIDTH, dragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiMenuState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -66,7 +66,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawInstructionState(Graphics g) {
-		g.drawImage(GamePanel.tempiInstructionState, WIDTH, HEIGHT, dragonRunnerMain.FRAME_WIDTH, dragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiInstructionState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void drawGameState(Graphics g) {
 		manager.draw(g);
-		g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, dragonRunnerMain.FRAME_WIDTH, dragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawArrowState(Graphics g) {
-		g.drawImage(GamePanel.tempiArrowState, WIDTH, HEIGHT, dragonRunnerMain.FRAME_WIDTH, dragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiArrowState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawSpikeState(Graphics g) {
-		g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, dragonRunnerMain.FRAME_WIDTH, dragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -103,7 +103,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawWinState(Graphics g) {
-		g.drawImage(GamePanel.tempiWinState, WIDTH, HEIGHT, dragonRunnerMain.FRAME_WIDTH, dragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiWinState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 	// END OF STATES
@@ -160,7 +160,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		if (e.getKeyCode() == 38){
 			//that's the up arrow
-			
+			manager.dragonUp();
+		}
+		
+		if (e.getKeyCode() == 40){
+			//that's the down arrow
+			manager.dragonDown();
 		}
 		
 		if (e.getKeyCode() == 83) {
@@ -233,6 +238,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 
+		if (e.getKeyCode() == 38){
+			//that's the up arrow
+			manager.dragonStop();
+		}
+		
+		if (e.getKeyCode() == 40){
+			//that's the down arrow
+			manager.dragonStop();
+		}
 	}
 
 }
