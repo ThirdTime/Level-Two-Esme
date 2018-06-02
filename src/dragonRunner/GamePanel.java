@@ -197,6 +197,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if ((currentState == END_STATE_ARROW) || (currentState == END_STATE_SPIKE)
 					|| (currentState == END_STATE_WIN)) {
 				currentState = MENU_STATE;
+				manager = new ObjectManagerK();
 			}
 		}
 
