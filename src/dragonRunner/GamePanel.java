@@ -1,6 +1,7 @@
 package dragonRunner;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,7 +102,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawSpikeState(Graphics g) {
-		g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
+		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
+		g.setFont(helvetica);
+		g.setColor(Color.MAGENTA);
+		g.drawString("Your score is" + gameTimer, 100, 100);
+	//	g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 

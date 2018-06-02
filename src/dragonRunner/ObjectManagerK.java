@@ -98,7 +98,7 @@ public class ObjectManagerK {
 			lastSpikeGenerated = System.currentTimeMillis();
 		}
 	}
-
+	
 	// COLLISIONS:
 	public void checkCollisions() {
 		System.out.println("checking");
