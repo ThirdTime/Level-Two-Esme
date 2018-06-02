@@ -17,17 +17,17 @@ public class SpikeFactory {
 
 	static Spikes buildWideSpike(){
 		return new Spikes(DragonRunnerMain.FRAME_WIDTH,
-				DragonRunnerMain.FRAME_HEIGHT -180, 100, 30);
+				DragonRunnerMain.FRAME_HEIGHT -150, 100, 30);
 		
 	}
 	
 	static Spikes buildTallSpike(){
 		return new Spikes(DragonRunnerMain.FRAME_WIDTH,
-				DragonRunnerMain.FRAME_HEIGHT -250, 50, 100);
+				DragonRunnerMain.FRAME_HEIGHT -150, 50, 100);
 	}
 	
 	static Spikes buildLargeSpike(){
 		return new Spikes(DragonRunnerMain.FRAME_WIDTH,
-					DragonRunnerMain.FRAME_HEIGHT -300, 150, 150);
+					DragonRunnerMain.FRAME_HEIGHT -150, 150, 150);
 	}
 }
