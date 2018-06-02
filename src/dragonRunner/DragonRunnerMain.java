@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 
-public class dragonRunnerMain {
+public class DragonRunnerMain {
 
 	JFrame frame;
 	GamePanel gamePanel;
@@ -13,14 +13,14 @@ public class dragonRunnerMain {
 	final static int FRAME_WIDTH = 1000;
 	final static int FRAME_HEIGHT = 450;
 	
-	public dragonRunnerMain (){
+	public DragonRunnerMain (){
 		frame = new JFrame();
 		gamePanel = new GamePanel();
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 	}
 	
 	public static void main(String[] args) {
-		dragonRunnerMain thisClass = new dragonRunnerMain();
+		DragonRunnerMain thisClass = new DragonRunnerMain();
 		thisClass.setup();
 	}
 	

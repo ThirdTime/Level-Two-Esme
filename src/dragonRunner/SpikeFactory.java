@@ -16,18 +16,18 @@ public class SpikeFactory {
 	}
 
 	static Spikes buildWideSpike(){
-		return new Spikes(dragonRunnerMain.FRAME_WIDTH,
-				dragonRunnerMain.FRAME_HEIGHT -180, 100, 30);
+		return new Spikes(DragonRunnerMain.FRAME_WIDTH,
+				DragonRunnerMain.FRAME_HEIGHT -180, 100, 30);
 		
 	}
 	
 	static Spikes buildTallSpike(){
-		return new Spikes(dragonRunnerMain.FRAME_WIDTH,
-				dragonRunnerMain.FRAME_HEIGHT -250, 50, 100);
+		return new Spikes(DragonRunnerMain.FRAME_WIDTH,
+				DragonRunnerMain.FRAME_HEIGHT -250, 50, 100);
 	}
 	
 	static Spikes buildLargeSpike(){
-		return new Spikes(dragonRunnerMain.FRAME_WIDTH,
-					dragonRunnerMain.FRAME_HEIGHT -300, 150, 150);
+		return new Spikes(DragonRunnerMain.FRAME_WIDTH,
+					DragonRunnerMain.FRAME_HEIGHT -300, 150, 150);
 	}
 }

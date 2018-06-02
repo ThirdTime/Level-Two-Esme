@@ -3,10 +3,9 @@ package dragonRunner;
 public class toDoToday {
 	//What do you need to do today?
 	
-	/* Figure out how to make the spikes different sizes
-	 * if needed, make subclasses of the spikes class with different sizes
-	 * that's pretty inconvenient, though.
-	 * just work on spikes overall, I guess
+	/* Make the dragon (who is currently an orange square)
+	 * be able to jump and crouch
+	 * if you finish that, try giving the dragon different images as it's running/jumping/crouching
 	 */
 	
 	

@@ -7,7 +7,7 @@ public class Ground extends GameObject {
 	private int groundMoveSpeed;
 
 	public Ground(int x, int y) {
-		super(x, y, 300, dragonRunnerMain.FRAME_HEIGHT);
+		super(x, y, 300, DragonRunnerMain.FRAME_HEIGHT);
 		groundMoveSpeed = 4;
 	}
 	
