@@ -16,6 +16,8 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer gameTimer;
+	long gameStartTime;
+	long gameEndTime;
 	// GameObject gameObject;
 
 	final int MENU_STATE = 0;
@@ -184,8 +186,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			// that's [s]
 			if (currentState == MENU_STATE) {
 				currentState = GAME_STATE;
+				gameStartTime = System.currentTimeMillis();
 			} else if (currentState == INSTRUCTION_STATE) {
 				currentState = GAME_STATE;
+				gameStartTime = System.currentTimeMillis();
 			}
 		}
 
