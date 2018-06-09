@@ -3,13 +3,11 @@ package dragonRunner;
 public class toDoToday {
 	//What do you need to do today?
 	
-	/* Figure out how to display how long your game has been running when you die.
-	 * You have a method called gameBeginTimer that records the system time in milis when you start
-	 * that - end time in milis divided by ten is the score
-	 * also delete the win state as there will be no finite end to the game
-	 * and figure out how to display your high score when you die!
+	/* Figure out how to display the high score of each game.
+	 *The GamePanel has a way of displaying the past score but not the highest one
+	 *Try an ArrayList that holds all the scores and a method to figure out which # is the biggest
 	 * 
-	 * that's all, have fun :-)
+	 * If done with that, make it so that the current score is displayed on the screen as well
 	 */
 	
 	

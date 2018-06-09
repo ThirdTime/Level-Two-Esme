@@ -18,6 +18,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer gameTimer;
 	long gameStartTime;
 	long gameEndTime;
+	String lastScore;
+	int timesGamePlayed;
+	
 	// GameObject gameObject;
 
 	final int MENU_STATE = 0;
@@ -39,6 +42,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
 	public GamePanel() {
 		gameTimer = new Timer(1000 / 60, this);
+		timesGamePlayed = 0;
+		lastScore = "0";
 		
 		try {
 			tempiArrowState = ImageIO.read(this.getClass().getResourceAsStream("tempImgArrowState.png"));
@@ -51,7 +56,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public String getStringScore(){
+		int startTimeAsInt = (int) gameStartTime;
+		int endTimeAsInt = (int) gameEndTime;
+		int scoreAsInt = (endTimeAsInt - startTimeAsInt) / 1000;
+		return Integer.toString(scoreAsInt);
+	}
+	
+	
 	/////////////////////////////////////////////
 	// START OF STATES
 	/////////////////////////////////////////////
@@ -77,16 +90,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.update();
 		if(manager.dragon.struckByArrow){
 			currentState = END_STATE_ARROW;
+			gameEndTime = System.currentTimeMillis();
+			timesGamePlayed = timesGamePlayed + 1;
+			lastScore = getStringScore();
 		}
 		
 		if(manager.dragon.struckBySpike){
 			currentState = END_STATE_SPIKE;
+			gameEndTime = System.currentTimeMillis();
+			timesGamePlayed = timesGamePlayed + 1;
+			lastScore = getStringScore();
 		}
 	}
 
 	public void drawGameState(Graphics g) {
+		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
+		g.setFont(helvetica);
+		g.setColor(Color.ORANGE);
+		g.drawString(lastScore, 100, 100);
 		manager.draw(g);
-		g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
+		//g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -95,7 +118,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawArrowState(Graphics g) {
-		g.drawImage(GamePanel.tempiArrowState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
+		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
+		g.setFont(helvetica);
+		g.setColor(Color.MAGENTA);
+		g.drawString("Your score is " + getStringScore(), 100, 100);
 	}
 	/////////////////////////////////////////////
 
@@ -107,7 +133,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.MAGENTA);
-		g.drawString("Your score is" + gameTimer, 100, 100);
+		g.drawString("Your score is " + getStringScore(), 100, 100);
 	//	g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
@@ -220,6 +246,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (currentState == GAME_STATE) {
 				currentState = END_STATE_ARROW;
+				gameEndTime= System.currentTimeMillis();
 			}
 
 		}
@@ -247,6 +274,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (currentState == GAME_STATE) {
 				currentState = END_STATE_SPIKE;
+				gameEndTime= System.currentTimeMillis();
 			}
 		}
 

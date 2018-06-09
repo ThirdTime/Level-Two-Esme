@@ -101,17 +101,14 @@ public class ObjectManagerK {
 	
 	// COLLISIONS:
 	public void checkCollisions() {
-		System.out.println("checking");
 		for (Arrow a : arrowList) {
 			if (dragon.collisionBox.intersects(a.collisionBox)) {
-				System.out.println("intersected arrow");
 				dragon.isAlive = false;
 				dragon.struckByArrow = true;
 			}
 		}
 		for (Spikes s : spikesList) {
 			if (dragon.collisionBox.intersects(s.collisionBox)) {
-				System.out.println("intersected spike");
 				dragon.isAlive = false;
 				dragon.struckBySpike = true;
 			}
