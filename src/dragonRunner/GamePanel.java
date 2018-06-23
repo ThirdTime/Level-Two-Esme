@@ -16,13 +16,7 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer gameTimer;
-	long gameStartTime;
-	long gameEndTime;
-	String lastScore;
-	int timesGamePlayed;
 	
-	// GameObject gameObject;
-
 	final int MENU_STATE = 0;
 	final int INSTRUCTION_STATE = 1;
 	final int GAME_STATE = 2;
@@ -39,11 +33,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage tempiGameState;
 	
 	ObjectManagerK manager = new ObjectManagerK();
+	ScoreManager scoreManager = new ScoreManager();
 	
 	public GamePanel() {
 		gameTimer = new Timer(1000 / 60, this);
-		timesGamePlayed = 0;
-		lastScore = "0";
 		
 		try {
 			tempiArrowState = ImageIO.read(this.getClass().getResourceAsStream("tempImgArrowState.png"));
@@ -56,14 +49,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 	}
-	
-	public String getStringScore(){
-		int startTimeAsInt = (int) gameStartTime;
-		int endTimeAsInt = (int) gameEndTime;
-		int scoreAsInt = (endTimeAsInt - startTimeAsInt) / 1000;
-		return Integer.toString(scoreAsInt);
-	}
-	
 	
 	/////////////////////////////////////////////
 	// START OF STATES
@@ -90,16 +75,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.update();
 		if(manager.dragon.struckByArrow){
 			currentState = END_STATE_ARROW;
-			gameEndTime = System.currentTimeMillis();
-			timesGamePlayed = timesGamePlayed + 1;
-			lastScore = getStringScore();
+		//	gameEndTime = System.currentTimeMillis();
+		//	timesGamePlayed = timesGamePlayed + 1;
+		//	currentScore = getStringScore();
 		}
 		
 		if(manager.dragon.struckBySpike){
 			currentState = END_STATE_SPIKE;
-			gameEndTime = System.currentTimeMillis();
-			timesGamePlayed = timesGamePlayed + 1;
-			lastScore = getStringScore();
+		//	gameEndTime = System.currentTimeMillis();
+		//	timesGamePlayed = timesGamePlayed + 1;
+		//	currentScore = getStringScore();
 		}
 	}
 
@@ -107,8 +92,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.ORANGE);
-		g.drawString(lastScore, 100, 100);
+	//	g.drawString(scoreManager.highScore, 100, 100);
 		manager.draw(g);
+		System.out.println(scoreManager.getHighScore());
 		//g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
@@ -121,7 +107,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.MAGENTA);
-		g.drawString("Your score is " + getStringScore(), 100, 100);
+		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
+		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
 	}
 	/////////////////////////////////////////////
 
@@ -133,7 +120,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.MAGENTA);
-		g.drawString("Your score is " + getStringScore(), 100, 100);
+		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
+		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
 	//	g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
@@ -212,10 +200,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			// that's [s]
 			if (currentState == MENU_STATE) {
 				currentState = GAME_STATE;
-				gameStartTime = System.currentTimeMillis();
+				scoreManager.startGame();
 			} else if (currentState == INSTRUCTION_STATE) {
 				currentState = GAME_STATE;
-				gameStartTime = System.currentTimeMillis();
+				scoreManager.startGame();
 			}
 		}
 
@@ -246,7 +234,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (currentState == GAME_STATE) {
 				currentState = END_STATE_ARROW;
-				gameEndTime= System.currentTimeMillis();
+				scoreManager.endGame();
 			}
 
 		}
@@ -274,7 +262,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (currentState == GAME_STATE) {
 				currentState = END_STATE_SPIKE;
-				gameEndTime= System.currentTimeMillis();
+				scoreManager.endGame();
 			}
 		}
 

@@ -3,11 +3,10 @@ package dragonRunner;
 public class toDoToday {
 	//What do you need to do today?
 	
-	/* Figure out how to display the high score of each game.
-	 *The GamePanel has a way of displaying the past score but not the highest one
-	 *Try an ArrayList that holds all the scores and a method to figure out which # is the biggest
-	 * 
-	 * If done with that, make it so that the current score is displayed on the screen as well
+	/* Make the high score actually display the high score and not just 0
+	 * I moved everything into scoreManager so there may be some bumps
+	 * calculateCurrentScore and calculateHighScore is where everything is going wrong
+	 * so check there :-)
 	 */
 	
 	
