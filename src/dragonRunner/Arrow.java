@@ -9,7 +9,7 @@ public class Arrow extends GameObject {
 
 	public Arrow(int x, int y) {
 		super(x, y, 80, 10);
-		arrowSpeed = 4;
+		arrowSpeed = 10;
 
 	}
 

@@ -73,28 +73,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void updateGameState() {
 		manager.update();
+		scoreManager.calculateCurrentScore();
 		if(manager.dragon.struckByArrow){
 			currentState = END_STATE_ARROW;
-		//	gameEndTime = System.currentTimeMillis();
-		//	timesGamePlayed = timesGamePlayed + 1;
-		//	currentScore = getStringScore();
+			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
 		}
 		
 		if(manager.dragon.struckBySpike){
 			currentState = END_STATE_SPIKE;
-		//	gameEndTime = System.currentTimeMillis();
-		//	timesGamePlayed = timesGamePlayed + 1;
-		//	currentScore = getStringScore();
+			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
 		}
 	}
 
 	public void drawGameState(Graphics g) {
-		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
+		Font helvetica = new Font ("Helvetica", Font.PLAIN, 30);
 		g.setFont(helvetica);
 		g.setColor(Color.ORANGE);
-	//	g.drawString(scoreManager.highScore, 100, 100);
 		manager.draw(g);
-		System.out.println(scoreManager.getHighScore());
+		g.setColor(Color.BLACK);
+		g.drawString("S: " + scoreManager.getCurrentScore(), 850, 30);
+		g.drawString("HS: " + scoreManager.getHighScore(), 750, 30);
 		//g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
@@ -109,6 +107,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.MAGENTA);
 		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
 		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
+		g.drawString("Press R to restart", 100, 400);
 	}
 	/////////////////////////////////////////////
 
@@ -122,6 +121,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.MAGENTA);
 		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
 		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
+		g.drawString("Press R to restart", 100, 400);
 	//	g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
@@ -233,8 +233,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			 */
 
 			if (currentState == GAME_STATE) {
+				scoreManager.calculateCurrentScore();
 				currentState = END_STATE_ARROW;
-				scoreManager.endGame();
+				scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
 			}
 
 		}
@@ -262,7 +263,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (currentState == GAME_STATE) {
 				currentState = END_STATE_SPIKE;
-				scoreManager.endGame();
+				scoreManager.calculateCurrentScore();
+				scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
 			}
 		}
 

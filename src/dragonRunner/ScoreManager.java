@@ -8,33 +8,27 @@ public class ScoreManager {
 	int timesGamePlayed;
 	int highScore;
 	int currentScore;
+	int lastScore;
 
 	public void startGame() {
 		gameStartTime = System.currentTimeMillis();
 	}
 
-	public void endGame() {
-		gameEndTime = System.currentTimeMillis();
-		calculateCurrentScore();
-		calculateHighScore();
-	}
-
 	public void calculateCurrentScore() {
+		gameEndTime = System.currentTimeMillis();
 		int startTimeAsInt = (int) gameStartTime;
 		int endTimeAsInt = (int) gameEndTime;
 		currentScore = (endTimeAsInt - startTimeAsInt) / 1000;
+		calculateHighScore();
 	}
 
-	public int calculateHighScore() {
-		if (highScore == 0) {
-			return highScore;
+	public void calculateHighScore() {
+		if (timesGamePlayed == 1) {
+			highScore = currentScore;
 		} else {
-			if (highScore > currentScore) {
+			if (highScore < currentScore) {
 				highScore = currentScore;
-				currentScore = 0;
-				return highScore;
-			} else
-				return highScore;
+			} 
 		}
 	}
 
