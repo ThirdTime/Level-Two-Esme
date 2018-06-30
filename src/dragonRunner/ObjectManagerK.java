@@ -72,7 +72,7 @@ public class ObjectManagerK {
 	}
 
 	public void fireArrows() {
-		int r = new Random().nextInt(100000) + 2000;
+		int r = new Random().nextInt(1000) + 500;
 		int arrowPause = r;
 
 		if (System.currentTimeMillis() - lastArrowFired >= arrowPause) {
