@@ -20,14 +20,20 @@ public class Dragon extends GameObject {
 	public void update() {
 		super.update();
 		y = y - ySpeed;
+		if(y<0){
+			y = 1;
+		}
+		if(y> DragonRunnerMain.FRAME_HEIGHT - 150){
+			y = DragonRunnerMain.FRAME_HEIGHT - 155;
+		}
 	}
 
 	public void flyUp() {
-		ySpeed = 3;
+		ySpeed = 9;
 	}
 
 	public void flyDown() {
-		ySpeed = -3;
+		ySpeed = -9;
 	}
 
 	public void draw(Graphics g) {
