@@ -16,7 +16,7 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer gameTimer;
-	
+
 	final int MENU_STATE = 0;
 	final int INSTRUCTION_STATE = 1;
 	final int GAME_STATE = 2;
@@ -24,20 +24,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END_STATE_SPIKE = 4;
 	final int END_STATE_WIN = 5;
 	int currentState = MENU_STATE;
-	
+
 	public static BufferedImage tempiArrowState;
 	public static BufferedImage tempiInstructionState;
 	public static BufferedImage tempiMenuState;
 	public static BufferedImage tempiSpikeState;
 	public static BufferedImage tempiWinState;
 	public static BufferedImage tempiGameState;
-	
+
 	ObjectManagerK manager = new ObjectManagerK();
 	ScoreManager scoreManager = new ScoreManager();
-	
+
 	public GamePanel() {
 		gameTimer = new Timer(1000 / 60, this);
-		
+
 		try {
 			tempiArrowState = ImageIO.read(this.getClass().getResourceAsStream("tempImgArrowState.png"));
 			tempiGameState = ImageIO.read(this.getClass().getResourceAsStream("tempImgGameState.png"));
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/////////////////////////////////////////////
 	// START OF STATES
 	/////////////////////////////////////////////
@@ -58,7 +58,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawMenuState(Graphics g) {
-		g.drawImage(GamePanel.tempiMenuState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiMenuState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
+				DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -67,33 +68,33 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawInstructionState(Graphics g) {
-		g.drawImage(GamePanel.tempiInstructionState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.tempiInstructionState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
+				DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
 	public void updateGameState() {
 		manager.update();
 		scoreManager.calculateCurrentScore();
-		if(manager.dragon.struckByArrow){
+		if (manager.dragon.struckByArrow) {
 			currentState = END_STATE_ARROW;
-			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
+			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed++;
 		}
-		
-		if(manager.dragon.struckBySpike){
+
+		if (manager.dragon.struckBySpike) {
 			currentState = END_STATE_SPIKE;
-			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
+			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed++;
 		}
 	}
 
 	public void drawGameState(Graphics g) {
-		Font helvetica = new Font ("Helvetica", Font.PLAIN, 30);
+		Font helvetica = new Font("Helvetica", Font.PLAIN, 30);
 		g.setFont(helvetica);
 		g.setColor(Color.ORANGE);
 		manager.draw(g);
 		g.setColor(Color.BLACK);
 		g.drawString("S: " + scoreManager.getCurrentScore(), 850, 30);
 		g.drawString("HS: " + scoreManager.getHighScore(), 750, 30);
-		//g.drawImage(GamePanel.tempiGameState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -102,7 +103,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawArrowState(Graphics g) {
-		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
+		Font helvetica = new Font("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.MAGENTA);
 		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
@@ -116,23 +117,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawSpikeState(Graphics g) {
-		Font helvetica = new Font ("Helvetica", Font.PLAIN, 80);
+		Font helvetica = new Font("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.MAGENTA);
 		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
 		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
 		g.drawString("Press R to restart", 100, 400);
-	//	g.drawImage(GamePanel.tempiSpikeState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
 	}
-	/////////////////////////////////////////////
-
-	public void updateWinState() {
-
-	}
-
-	public void drawWinState(Graphics g) {
-		g.drawImage(GamePanel.tempiWinState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT, null);
-	}
+	
 	/////////////////////////////////////////////
 	// END OF STATES
 	/////////////////////////////////////////////
@@ -150,15 +142,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			updateArrowState();
 		} else if (currentState == END_STATE_SPIKE) {
 			updateSpikeState();
-		} else if (currentState == END_STATE_WIN) {
-			updateWinState();
 		}
 
 	}
 
 	public void paintComponent(Graphics g) {
-		// gameObject.draw(g);
-
 		if (currentState == MENU_STATE) {
 			drawMenuState(g);
 		} else if (currentState == INSTRUCTION_STATE) {
@@ -169,8 +157,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			drawArrowState(g);
 		} else if (currentState == END_STATE_SPIKE) {
 			drawSpikeState(g);
-		} else if (currentState == END_STATE_WIN) {
-			drawWinState(g);
 		}
 	}
 
@@ -180,22 +166,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 
-		if (e.getKeyCode() == 38){
-			//that's the up arrow
+		if (e.getKeyCode() == 38) {
+			// that's the up arrow
 			manager.dragonUp();
 		}
-		
-		if (e.getKeyCode() == 40){
-			//that's the down arrow
+
+		if (e.getKeyCode() == 40) {
+			// that's the down arrow
 			manager.dragonDown();
 		}
-		
+
 		if (e.getKeyCode() == 83) {
 			// that's [s]
 			if (currentState == MENU_STATE) {
@@ -224,62 +209,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 
-		if (e.getKeyCode() == 81) {
-			/*
-			 * that's [q]
-			 * 
-			 * assigning the death (arrow) state here just so that I can see it without
-			 * playing the game delete this once collision boxes are programmed
-			 */
-
-			if (currentState == GAME_STATE) {
-				scoreManager.calculateCurrentScore();
-				currentState = END_STATE_ARROW;
-				scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
-			}
-
-		}
-
-		if (e.getKeyCode() == 87) {
-			/*
-			 * that's [w]
-			 * 
-			 * assigning the win state here just so that I can see it without playing the
-			 * game delete this once collision boxes are programmed
-			 */
-
-			if (currentState == GAME_STATE) {
-				currentState = END_STATE_WIN;
-			}
-		}
-
-		if (e.getKeyCode() == 69) {
-			/*
-			 * that's [e]
-			 * 
-			 * assigning the death (spike) state here just so that I can see it without
-			 * playing the game delete this once collision boxes are programmed
-			 */
-
-			if (currentState == GAME_STATE) {
-				currentState = END_STATE_SPIKE;
-				scoreManager.calculateCurrentScore();
-				scoreManager.timesGamePlayed = scoreManager.timesGamePlayed ++;
-			}
-		}
-
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 
-		if (e.getKeyCode() == 38){
-			//that's the up arrow
+		if (e.getKeyCode() == 38) {
+			// that's the up arrow
 			manager.dragonStop();
 		}
-		
-		if (e.getKeyCode() == 40){
-			//that's the down arrow
+
+		if (e.getKeyCode() == 40) {
+			// that's the down arrow
 			manager.dragonStop();
 		}
 	}
