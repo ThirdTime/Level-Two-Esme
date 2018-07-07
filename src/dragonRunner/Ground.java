@@ -5,9 +5,10 @@ import java.awt.Graphics;
 
 public class Ground extends GameObject {
 	private int groundMoveSpeed;
+	final static int HEIGHT_OF_GROUND = 80;
 
 	public Ground(int x, int y) {
-		super(x, y, 300, DragonRunnerMain.FRAME_HEIGHT);
+		super(x, y, 300, HEIGHT_OF_GROUND);
 		groundMoveSpeed = 4;
 	}
 	
@@ -21,8 +22,7 @@ public class Ground extends GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.GREEN);
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.imgGround, x, y, width, height, null);
 	}
 
 }

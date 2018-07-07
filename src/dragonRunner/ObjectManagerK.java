@@ -52,13 +52,13 @@ public class ObjectManagerK {
 
 	public void loopGround() {
 		if (groundList.size() == 0) {
-			addGroundToList(new Ground(0, DragonRunnerMain.FRAME_HEIGHT - 70));
+			addGroundToList(new Ground(0, DragonRunnerMain.FRAME_HEIGHT- Ground.HEIGHT_OF_GROUND));
 		}
 
 		Ground lastGroundOnScreen = groundList.get(groundList.size() - 1);
 		if (lastGroundOnScreen.x + lastGroundOnScreen.width < DragonRunnerMain.FRAME_WIDTH) {
 			addGroundToList(
-					new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width, DragonRunnerMain.FRAME_HEIGHT - 70));
+					new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width, DragonRunnerMain.FRAME_HEIGHT- Ground.HEIGHT_OF_GROUND));
 		}
 	}
 
