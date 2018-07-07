@@ -23,8 +23,7 @@ public class Cloud extends GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.imgCloud, x, y, width, height, null);
 	}
 
 }

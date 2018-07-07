@@ -23,8 +23,8 @@ public class Spikes extends GameObject{
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.CYAN);
-		g.fillRect(x, y, width, height);
+
+		g.drawImage(GamePanel.imgSpikes, x, y, width, height, null);
 	}
 
 

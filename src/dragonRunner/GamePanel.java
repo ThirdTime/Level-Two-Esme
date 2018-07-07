@@ -25,12 +25,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END_STATE_WIN = 5;
 	int currentState = MENU_STATE;
 
-	public static BufferedImage tempiArrowState;
 	public static BufferedImage tempiInstructionState;
-	public static BufferedImage tempiMenuState;
+	public static BufferedImage imgMenu;
 	public static BufferedImage tempiSpikeState;
-	public static BufferedImage tempiWinState;
-	public static BufferedImage tempiGameState;
+	public static BufferedImage imgInstructions;
+	public static BufferedImage imgGameBackground;
+	public static BufferedImage imgCloud;
+	public static BufferedImage imgArrow;
+	public static BufferedImage imgSpikes;
+	public static BufferedImage imgGround;
+	
 
 	ObjectManagerK manager = new ObjectManagerK();
 	ScoreManager scoreManager = new ScoreManager();
@@ -39,12 +43,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		gameTimer = new Timer(1000 / 60, this);
 
 		try {
-			tempiArrowState = ImageIO.read(this.getClass().getResourceAsStream("tempImgArrowState.png"));
-			tempiGameState = ImageIO.read(this.getClass().getResourceAsStream("tempImgGameState.png"));
-			tempiInstructionState = ImageIO.read(this.getClass().getResourceAsStream("tempImgInstructionState.png"));
-			tempiMenuState = ImageIO.read(this.getClass().getResourceAsStream("tempImgMenuState.png"));
-			tempiSpikeState = ImageIO.read(this.getClass().getResourceAsStream("tempImgSpikeState.png"));
-			tempiWinState = ImageIO.read(this.getClass().getResourceAsStream("tempImgWinState.png"));
+			imgInstructions = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgInstructions.png"));
+			imgMenu = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgMenuState.png"));
+			tempiSpikeState = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgSpikeState.png"));
+			imgGameBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGameBackground.png"));
+			imgCloud = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgCloud.png"));
+			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgArrow.png"));
+			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgSpikes.png"));
+			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGround.png"));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -58,8 +65,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawMenuState(Graphics g) {
-		g.drawImage(GamePanel.tempiMenuState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
-				DragonRunnerMain.FRAME_HEIGHT, null);
+		g.drawImage(GamePanel.imgMenu, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT,
+				null);
 	}
 	/////////////////////////////////////////////
 
@@ -68,7 +75,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawInstructionState(Graphics g) {
-		g.drawImage(GamePanel.tempiInstructionState, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
+		g.drawImage(GamePanel.imgInstructions, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
 				DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
@@ -88,6 +95,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawGameState(Graphics g) {
+		g.drawImage(GamePanel.imgGameBackground, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
+				DragonRunnerMain.FRAME_HEIGHT, null);
+		
 		Font helvetica = new Font("Helvetica", Font.PLAIN, 30);
 		g.setFont(helvetica);
 		g.setColor(Color.ORANGE);
@@ -124,7 +134,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
 		g.drawString("Press R to restart", 100, 400);
 	}
-	
+
 	/////////////////////////////////////////////
 	// END OF STATES
 	/////////////////////////////////////////////

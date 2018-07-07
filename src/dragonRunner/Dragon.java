@@ -23,8 +23,8 @@ public class Dragon extends GameObject {
 		if(y<0){
 			y = 1;
 		}
-		if(y> DragonRunnerMain.FRAME_HEIGHT - 150){
-			y = DragonRunnerMain.FRAME_HEIGHT - 155;
+		if(y> DragonRunnerMain.FRAME_HEIGHT - Ground.HEIGHT_OF_GROUND - 70){
+			y = DragonRunnerMain.FRAME_HEIGHT - Ground.HEIGHT_OF_GROUND - 70 - 2;
 		}
 	}
 
