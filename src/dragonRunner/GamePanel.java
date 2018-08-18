@@ -82,7 +82,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void updateGameState() {
 		manager.update();
-		scoreManager.calculateCurrentScore();
+		scoreManager.calculateCurrentTime();
 		if (manager.dragon.struckByArrow) {
 			currentState = END_STATE_ARROW;
 			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed++;
@@ -103,7 +103,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.ORANGE);
 		manager.draw(g);
 		g.setColor(Color.BLACK);
-		g.drawString("S: " + scoreManager.getCurrentScore(), 850, 30);
+		g.drawString("S: " + scoreManager.getCurrentTime(), 850, 30);
 		g.drawString("HS: " + scoreManager.getHighScore(), 750, 30);
 	}
 	/////////////////////////////////////////////
@@ -116,7 +116,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Font helvetica = new Font("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.MAGENTA);
-		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
+		g.drawString("Your score is " + scoreManager.getCurrentTime(), 100, 100);
 		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
 		g.drawString("Press R to restart", 100, 400);
 	}
@@ -130,7 +130,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Font helvetica = new Font("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.MAGENTA);
-		g.drawString("Your score is " + scoreManager.getCurrentScore(), 100, 100);
+		g.drawString("Your score is " + scoreManager.getCurrentTime(), 100, 100);
 		g.drawString("High score is " + scoreManager.getHighScore(), 100, 200);
 		g.drawString("Press R to restart", 100, 400);
 	}

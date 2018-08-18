@@ -1,5 +1,6 @@
 package dragonRunner;
 
+import java.awt.Color;
 //imports
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.Random;
 public class ObjectManagerK {
 
 	Dragon dragon = new Dragon(80, 100);
-
+	PowerupBar powerupBar = new PowerupBar();
 	public void dragonUp() {
 		dragon.flyUp();
 	}
@@ -118,6 +119,7 @@ public class ObjectManagerK {
 	// UPDATE AND DRAW:
 	public void update() {
 		dragon.update();
+		powerupBar.update();
 		generateClouds();
 		loopGround();
 		fireArrows();
@@ -137,15 +139,20 @@ public class ObjectManagerK {
 
 	public void draw(Graphics g) {
 		
-
-		this.drawArrayList(arrowList, g);
 		this.drawArrayList(cloudList, g);
+		this.drawArrayList(arrowList, g);	
 		dragon.draw(g);
 		this.drawArrayList(groundList, g);
 		this.drawArrayList(spikesList, g);
+		powerupBar.draw(g);
+		
+		
 	}
 
 	// MISC METHODS
+	
+	// COLOR CHARGING
+	
 	// PURGE OBJECTS
 	public void purgeObjects(ArrayList<? extends GameObject> list) {
 		for (int i = list.size() - 1; i >= 0; i--) {
