@@ -136,10 +136,11 @@ public class ObjectManagerK {
 	}
 
 	public void draw(Graphics g) {
-		dragon.draw(g);
+		
 
 		this.drawArrayList(arrowList, g);
 		this.drawArrayList(cloudList, g);
+		dragon.draw(g);
 		this.drawArrayList(groundList, g);
 		this.drawArrayList(spikesList, g);
 	}
