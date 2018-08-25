@@ -3,6 +3,7 @@ package dragonRunner;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,12 +23,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 2;
 	final int END_STATE_ARROW = 3;
 	final int END_STATE_SPIKE = 4;
-	final int END_STATE_WIN = 5;
 	int currentState = MENU_STATE;
 
-	public static BufferedImage tempiInstructionState;
+	public static BufferedImage instructionState;
 	public static BufferedImage imgMenu;
-	public static BufferedImage tempiSpikeState;
+	public static BufferedImage spikeState;
 	public static BufferedImage imgInstructions;
 	public static BufferedImage imgGameBackground;
 	public static BufferedImage imgCloud;
@@ -45,12 +45,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		try {
 			imgInstructions = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgInstructions.png"));
 			imgMenu = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgMenuState.png"));
-			tempiSpikeState = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgSpikeState.png"));
+			spikeState = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgSpikeState.png"));
 			imgGameBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGameBackground.png"));
 			imgCloud = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgCloud.png"));
 			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgArrow.png"));
 			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgSpikes.png"));
-			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGround.png"));
+			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGround2.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -212,8 +212,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		if (e.getKeyCode() == 82) {
 			// that's [r]
-			if ((currentState == END_STATE_ARROW) || (currentState == END_STATE_SPIKE)
-					|| (currentState == END_STATE_WIN)) {
+			if ((currentState == END_STATE_ARROW) || (currentState == END_STATE_SPIKE)) {
 				currentState = MENU_STATE;
 				manager = new ObjectManagerK();
 			}

@@ -9,7 +9,7 @@ public class Ground extends GameObject {
 
 	public Ground(int x, int y) {
 		super(x, y, 300, HEIGHT_OF_GROUND);
-		groundMoveSpeed = 4;
+		groundMoveSpeed = 8;
 	}
 	
 	public void update() {

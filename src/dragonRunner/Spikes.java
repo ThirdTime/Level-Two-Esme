@@ -10,7 +10,7 @@ public class Spikes extends GameObject{
 	public Spikes(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		
-		spikeSpeed = 10;
+		spikeSpeed = 8;
 	}
 	
 	public void update() {

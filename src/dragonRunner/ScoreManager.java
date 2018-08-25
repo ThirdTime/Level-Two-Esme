@@ -3,7 +3,7 @@ package dragonRunner;
 public class ScoreManager {
 	int startTimeAsInt;
 	int endTimeAsInt;
-	long gameStartTime;
+	static long gameStartTime;
 	long gameEndTime;
 	int timesGamePlayed;
 	int highScore;
