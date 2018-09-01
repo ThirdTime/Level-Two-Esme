@@ -23,7 +23,7 @@ public class Arrow extends GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.MAGENTA);
+		g.setColor(Color.BLACK);
 		g.fillRect(x, y, width, height);
 	//	g.drawImage(GamePanel.imgArrow, x, y, width, height, null);
 	}
