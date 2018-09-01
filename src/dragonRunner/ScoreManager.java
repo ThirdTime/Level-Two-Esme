@@ -1,14 +1,14 @@
 package dragonRunner;
 
 public class ScoreManager {
-	int startTimeAsInt;
-	int endTimeAsInt;
-	static long gameStartTime;
-	long gameEndTime;
-	int timesGamePlayed;
-	int highScore;
-	int currentScore;
-	int lastScore;
+	private int startTimeAsInt;
+	private int endTimeAsInt;
+	private static long gameStartTime;
+	private long gameEndTime;
+	private int timesGamePlayed;
+	private int highScore;
+	private int currentScore;
+	private int lastScore;
 
 	public void startGame() {
 		gameStartTime = System.currentTimeMillis();
@@ -38,5 +38,9 @@ public class ScoreManager {
 
 	public int getCurrentScore() {
 		return currentScore;
+	}
+	
+	public void increaseTimesGamePlayed() {
+		timesGamePlayed++;
 	}
 }

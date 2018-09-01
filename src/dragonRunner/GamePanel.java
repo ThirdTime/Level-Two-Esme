@@ -18,12 +18,12 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer gameTimer;
 
-	final int MENU_STATE = 0;
-	final int INSTRUCTION_STATE = 1;
-	final int GAME_STATE = 2;
-	final int END_STATE_ARROW = 3;
-	final int END_STATE_SPIKE = 4;
-	int currentState = MENU_STATE;
+	private final int MENU_STATE = 0;
+	private final int INSTRUCTION_STATE = 1;
+	private final int GAME_STATE = 2;
+	private final int END_STATE_ARROW = 3;
+	private final int END_STATE_SPIKE = 4;
+	private int currentState = MENU_STATE;
 
 	public static BufferedImage instructionState;
 	public static BufferedImage imgMenu;
@@ -34,7 +34,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imgArrow;
 	public static BufferedImage imgSpikes;
 	public static BufferedImage imgGround;
-	
 
 	ObjectManagerK manager = new ObjectManagerK();
 	ScoreManager scoreManager = new ScoreManager();
@@ -51,7 +50,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgArrow.png"));
 			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgSpikes.png"));
 			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGround2.png"));
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,19 +84,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		scoreManager.calculateCurrentScore();
 		if (manager.dragon.struckByArrow) {
 			currentState = END_STATE_ARROW;
-			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed++;
+			scoreManager.increaseTimesGamePlayed();
 		}
 
 		if (manager.dragon.struckBySpike) {
 			currentState = END_STATE_SPIKE;
-			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed++;
+			scoreManager.increaseTimesGamePlayed();
 		}
 	}
 
 	public void drawGameState(Graphics g) {
 		g.drawImage(GamePanel.imgGameBackground, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
 				DragonRunnerMain.FRAME_HEIGHT, null);
-		
+
 		Font helvetica = new Font("Helvetica", Font.PLAIN, 30);
 		g.setFont(helvetica);
 		g.setColor(Color.ORANGE);
