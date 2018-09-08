@@ -10,6 +10,15 @@ public class ObjectManagerK {
 
 	Dragon dragon = new Dragon(80, 100);
 	PowerupBar powerupBar = new PowerupBar();
+
+	public void deleteBar() {
+		powerupBar.deleteBar();
+	}
+	
+	public void increaseBar() {
+		powerupBar.increaseBar();
+	}
+	
 	public void dragonUp() {
 		dragon.flyUp();
 	}

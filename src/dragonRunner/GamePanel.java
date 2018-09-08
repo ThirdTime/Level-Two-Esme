@@ -218,6 +218,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				manager = new ObjectManagerK();
 			}
 		}
+		
+		if (e.getKeyCode() == 32) {
+			// that's [space]
+			manager.deleteBar();
+		}
 
 	}
 
