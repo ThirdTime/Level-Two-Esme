@@ -10,7 +10,11 @@ public class ObjectManagerK {
 
 	Dragon dragon = new Dragon(80, 100);
 	PowerupBar powerupBar = new PowerupBar();
+	FireBreath fireBreath = new FireBreath();
 
+	public void fireFire() {
+		fireBreath.fireFire();
+	}
 	public void deleteBar() {
 		powerupBar.deleteBar();
 	}
@@ -129,6 +133,7 @@ public class ObjectManagerK {
 	public void update() {
 		dragon.update();
 		powerupBar.update();
+		fireBreath.update();
 		generateClouds();
 		loopGround();
 		fireArrows();
@@ -149,7 +154,10 @@ public class ObjectManagerK {
 	public void draw(Graphics g) {
 		
 		this.drawArrayList(cloudList, g);
-		this.drawArrayList(arrowList, g);	
+		this.drawArrayList(arrowList, g);
+		if(fireBreath.fireFired() == true) {
+			fireBreath.draw(g);
+		}
 		dragon.draw(g);
 		this.drawArrayList(groundList, g);
 		this.drawArrayList(spikesList, g);

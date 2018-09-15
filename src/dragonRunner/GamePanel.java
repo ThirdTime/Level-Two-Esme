@@ -222,6 +222,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == 32) {
 			// that's [space]
 			manager.deleteBar();
+			manager.fireFire();
+			
 		}
 
 	}

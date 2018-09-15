@@ -24,10 +24,14 @@ public class PowerupBar extends GameObject implements ActionListener {
 		if(fullyCharged == true) {
 		width = 0;
 		fullyCharged = false;
-		System.out.println("KABOOM!!!!!!!!!!!!!!!!!!");
+	//	System.out.println("KABOOM!!!!!!!!!!!!!!!!!!");
 		}
 	}
 
+	public boolean getFullyCharged() {
+		return fullyCharged;
+	}
+	
 	public void update() {
 		super.update();
 	}
