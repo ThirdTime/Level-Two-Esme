@@ -15,14 +15,15 @@ public class ObjectManagerK {
 	public void fireFire() {
 		fireBreath.fireFire();
 	}
+
 	public void deleteBar() {
 		powerupBar.deleteBar();
 	}
-	
+
 	public void increaseBar() {
 		powerupBar.increaseBar();
 	}
-	
+
 	public void dragonUp() {
 		dragon.flyUp();
 	}
@@ -66,13 +67,13 @@ public class ObjectManagerK {
 
 	public void loopGround() {
 		if (groundList.size() == 0) {
-			addGroundToList(new Ground(0, DragonRunnerMain.FRAME_HEIGHT- Ground.HEIGHT_OF_GROUND));
+			addGroundToList(new Ground(0, DragonRunnerMain.FRAME_HEIGHT - Ground.HEIGHT_OF_GROUND));
 		}
 
 		Ground lastGroundOnScreen = groundList.get(groundList.size() - 1);
 		if (lastGroundOnScreen.x + lastGroundOnScreen.width < DragonRunnerMain.FRAME_WIDTH) {
-			addGroundToList(
-					new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width, DragonRunnerMain.FRAME_HEIGHT- Ground.HEIGHT_OF_GROUND));
+			addGroundToList(new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width,
+					DragonRunnerMain.FRAME_HEIGHT - Ground.HEIGHT_OF_GROUND));
 		}
 	}
 
@@ -112,7 +113,7 @@ public class ObjectManagerK {
 			lastSpikeGenerated = System.currentTimeMillis();
 		}
 	}
-	
+
 	// COLLISIONS:
 	public void checkCollisions() {
 		for (Arrow a : arrowList) {
@@ -121,10 +122,23 @@ public class ObjectManagerK {
 				dragon.struckByArrow = true;
 			}
 		}
+
 		for (Spikes s : spikesList) {
 			if (dragon.collisionBox.intersects(s.collisionBox)) {
 				dragon.isAlive = false;
 				dragon.struckBySpike = true;
+			}
+		}
+
+		for (Spikes s : spikesList) {
+			if (fireBreath.collisionBox.intersects(s.collisionBox)) {
+				s.isAlive = false;
+				}
+			}
+
+		for (Arrow a : arrowList) {
+			if (fireBreath.collisionBox.intersects(a.collisionBox)) {
+				a.isAlive = false;
 			}
 		}
 	}
@@ -152,24 +166,23 @@ public class ObjectManagerK {
 	}
 
 	public void draw(Graphics g) {
-		
+
 		this.drawArrayList(cloudList, g);
 		this.drawArrayList(arrowList, g);
-		if(fireBreath.fireFired() == true) {
+		if (fireBreath.isFireCurrentlyDisplayed() == true && fireBreath.isAlive) {
 			fireBreath.draw(g);
 		}
 		dragon.draw(g);
 		this.drawArrayList(groundList, g);
 		this.drawArrayList(spikesList, g);
 		powerupBar.draw(g);
-		
-		
+
 	}
 
 	// MISC METHODS
-	
+
 	// COLOR CHARGING
-	
+
 	// PURGE OBJECTS
 	public void purgeObjects(ArrayList<? extends GameObject> list) {
 		for (int i = list.size() - 1; i >= 0; i--) {

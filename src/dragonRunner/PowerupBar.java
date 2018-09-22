@@ -18,20 +18,19 @@ public class PowerupBar extends GameObject implements ActionListener {
 		super(45, 18, 20, 16);
 		testTimer = new Timer(1000, this);
 		testTimer.start();
-		}
+	}
 
 	public void deleteBar() {
-		if(fullyCharged == true) {
-		width = 0;
-		fullyCharged = false;
-	//	System.out.println("KABOOM!!!!!!!!!!!!!!!!!!");
+		if (fullyCharged == true) {
+			width = 0;
 		}
+		fullyCharged = false;
 	}
 
 	public boolean getFullyCharged() {
 		return fullyCharged;
 	}
-	
+
 	public void update() {
 		super.update();
 	}

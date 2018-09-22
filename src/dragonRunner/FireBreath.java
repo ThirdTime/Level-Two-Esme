@@ -6,36 +6,40 @@ import java.awt.Graphics;
 public class FireBreath extends GameObject{
 	
 	PowerupBar pob = new PowerupBar();
-	private boolean wasFireFired = false;
+	private boolean currentlyDisplayingFire = false;
 	
 	private int fireBreathSpeed;
 	public FireBreath() {
-		super(80, 0, 80, DragonRunnerMain.FRAME_HEIGHT);
-		fireBreathSpeed = 5;
-		// TODO Auto-generated constructor stub
+		super(80, 0, 0, 0);
 	}
 	
-	public boolean fireFired() {
-		return wasFireFired;
-	}
-	
-	public void resetFire() {
-		if(x> DragonRunnerMain.FRAME_WIDTH) {
-			wasFireFired = false;
-			fireBreathSpeed = 5;
-			x = 80;
-		}
+	public boolean isFireCurrentlyDisplayed() {
+		return currentlyDisplayingFire;
 	}
 	
 	public void fireFire() {
 		if(pob.getFullyCharged() == true) {
-			wasFireFired = true;
+			width = 80;
+			height = DragonRunnerMain.FRAME_HEIGHT;
+			currentlyDisplayingFire = true;
+			isAlive = true;
 		}
 	}
 	
 	public void update(){
-		if(wasFireFired == true) {
+		super.update();
+		if(currentlyDisplayingFire == true) {
+			fireBreathSpeed = 5;
 			x = x + fireBreathSpeed;
+		}
+		
+		if(x >= DragonRunnerMain.FRAME_WIDTH){
+			isAlive = false;
+			currentlyDisplayingFire = false;
+			fireBreathSpeed = 0;
+			x = 80;
+			width = 0;
+			height = 0;
 		}
 		
 	}
