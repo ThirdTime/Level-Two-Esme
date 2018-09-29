@@ -23,6 +23,7 @@ public class FireBreath extends GameObject{
 			height = DragonRunnerMain.FRAME_HEIGHT;
 			currentlyDisplayingFire = true;
 			isAlive = true;
+			pob.deleteBar();
 		}
 	}
 	
@@ -32,6 +33,8 @@ public class FireBreath extends GameObject{
 			fireBreathSpeed = 5;
 			x = x + fireBreathSpeed;
 		}
+		
+		pob.update();
 		
 		if(x >= DragonRunnerMain.FRAME_WIDTH){
 			isAlive = false;

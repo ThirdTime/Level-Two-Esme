@@ -12,6 +12,7 @@ public class ObjectManagerK {
 	PowerupBar powerupBar = new PowerupBar();
 	FireBreath fireBreath = new FireBreath();
 
+	// MANAGING THE FIREBREATHING
 	public void fireFire() {
 		fireBreath.fireFire();
 	}
@@ -24,6 +25,7 @@ public class ObjectManagerK {
 		powerupBar.increaseBar();
 	}
 
+	// THE DRAGON
 	public void dragonUp() {
 		dragon.flyUp();
 	}
@@ -178,10 +180,6 @@ public class ObjectManagerK {
 		powerupBar.draw(g);
 
 	}
-
-	// MISC METHODS
-
-	// COLOR CHARGING
 
 	// PURGE OBJECTS
 	public void purgeObjects(ArrayList<? extends GameObject> list) {

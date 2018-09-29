@@ -12,7 +12,7 @@ public class PowerupBar extends GameObject implements ActionListener {
 	long timeBarDepleted;
 	int SystemCurrentTimeInSec;
 	Timer testTimer;
-	boolean fullyCharged = false;
+	private boolean fullyCharged = false;
 
 	public PowerupBar() {
 		super(45, 18, 20, 16);
