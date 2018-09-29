@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class FireBreath extends GameObject{
 	
-	PowerupBar pob = new PowerupBar();
+	PowerupBar powerUpBar = new PowerupBar();
 	private boolean currentlyDisplayingFire = false;
 	
 	private int fireBreathSpeed;
@@ -18,23 +18,23 @@ public class FireBreath extends GameObject{
 	}
 	
 	public void fireFire() {
-		if(pob.getFullyCharged() == true) {
+		if(powerUpBar.getFullyCharged() == true) {
 			width = 80;
 			height = DragonRunnerMain.FRAME_HEIGHT;
 			currentlyDisplayingFire = true;
+			fireBreathSpeed = 5;
 			isAlive = true;
-			pob.deleteBar();
+			powerUpBar.deleteBar();
 		}
 	}
 	
 	public void update(){
 		super.update();
-		if(currentlyDisplayingFire == true) {
-			fireBreathSpeed = 5;
+		if(currentlyDisplayingFire) {
 			x = x + fireBreathSpeed;
 		}
 		
-		pob.update();
+		powerUpBar.update();
 		
 		if(x >= DragonRunnerMain.FRAME_WIDTH){
 			isAlive = false;

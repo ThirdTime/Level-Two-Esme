@@ -40,20 +40,21 @@ public class ObjectManagerK {
 		dragon.ySpeed = 0;
 	}
 
-	public int getRandomNumberZeroToFiveSeconds(){
+	public int getRandomNumberZeroToFiveSeconds() {
 		return new Random().nextInt(FIVE_SECONDS);
 	}
-	
+
 	public int getRandomNumberZeroishToOneSecond() {
 		return new Random().nextInt(ONE_SECOND) + FIFTH_OF_SECOND;
 	}
-	
+
 	// THE CLOUDS:
 	private long lastCloudCreated = 0;
 	int numZeroToFive = FIVE_SECONDS;
 
 	// Making the Cloud List
 	ArrayList<Cloud> cloudList = new ArrayList<>();
+
 	public void addCloudToList(Cloud cloud) {
 		cloudList.add(cloud);
 	}
@@ -65,7 +66,7 @@ public class ObjectManagerK {
 					new Cloud(DragonRunnerMain.FRAME_WIDTH, new Random().nextInt(DragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastCloudCreated = System.currentTimeMillis();
 			numZeroToFive = getRandomNumberZeroToFiveSeconds();
-			
+
 		}
 	}
 
@@ -143,8 +144,8 @@ public class ObjectManagerK {
 		for (Spikes s : spikesList) {
 			if (fireBreath.collisionBox.intersects(s.collisionBox)) {
 				s.isAlive = false;
-				}
 			}
+		}
 
 		for (Arrow a : arrowList) {
 			if (fireBreath.collisionBox.intersects(a.collisionBox)) {
@@ -179,7 +180,7 @@ public class ObjectManagerK {
 
 		this.drawArrayList(cloudList, g);
 		this.drawArrayList(arrowList, g);
-		if (fireBreath.isFireCurrentlyDisplayed() == true && fireBreath.isAlive) {
+		if (fireBreath.isFireCurrentlyDisplayed() && fireBreath.isAlive) {
 			fireBreath.draw(g);
 		}
 		dragon.draw(g);

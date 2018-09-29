@@ -9,11 +9,19 @@ import javax.swing.Timer;
 
 public class PowerupBar extends GameObject implements ActionListener {
 
-	long timeBarDepleted;
-	int SystemCurrentTimeInSec;
-	Timer testTimer;
+	private long timeBarDepleted;
+	private int systemCurrentTimeInSec;
+	private Timer testTimer;
 	private boolean fullyCharged = false;
 
+	public long getTimeBarDepleted(){
+		return timeBarDepleted;
+	}
+	
+	public int getSystemCurrentTimeInSec(){
+		return systemCurrentTimeInSec;
+	}
+	
 	public PowerupBar() {
 		super(45, 18, 20, 16);
 		testTimer = new Timer(1000, this);
