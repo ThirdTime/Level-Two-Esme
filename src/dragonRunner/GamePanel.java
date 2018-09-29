@@ -1,8 +1,10 @@
 package dragonRunner;
 
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,30 +13,30 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JApplet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer gameTimer;
 
-	final int MENU_STATE = 0;
-	final int INSTRUCTION_STATE = 1;
-	final int GAME_STATE = 2;
-	final int END_STATE_ARROW = 3;
-	final int END_STATE_SPIKE = 4;
-	final int END_STATE_WIN = 5;
-	int currentState = MENU_STATE;
+	private final int MENU_STATE = 0;
+	private final int INSTRUCTION_STATE = 1;
+	private final int GAME_STATE = 2;
+	private final int END_STATE_ARROW = 3;
+	private final int END_STATE_SPIKE = 4;
+	private int currentState = MENU_STATE;
 
-	public static BufferedImage tempiInstructionState;
+	public static BufferedImage instructionState;
 	public static BufferedImage imgMenu;
-	public static BufferedImage tempiSpikeState;
+	public static BufferedImage spikeState;
 	public static BufferedImage imgInstructions;
 	public static BufferedImage imgGameBackground;
 	public static BufferedImage imgCloud;
 	public static BufferedImage imgArrow;
 	public static BufferedImage imgSpikes;
 	public static BufferedImage imgGround;
-	
+	public static BufferedImage imgDragon;
 
 	ObjectManagerK manager = new ObjectManagerK();
 	ScoreManager scoreManager = new ScoreManager();
@@ -45,13 +47,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		try {
 			imgInstructions = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgInstructions.png"));
 			imgMenu = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgMenuState.png"));
-			tempiSpikeState = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgSpikeState.png"));
+			spikeState = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/tempImgSpikeState.png"));
 			imgGameBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGameBackground.png"));
 			imgCloud = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgCloud.png"));
 			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgArrow.png"));
 			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgSpikes.png"));
-			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGround.png"));
-			
+			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGround2.png"));
+			imgDragon = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/dragonRough.png"));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -85,19 +88,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		scoreManager.calculateCurrentTime();
 		if (manager.dragon.struckByArrow) {
 			currentState = END_STATE_ARROW;
-			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed++;
+			playSound("./gameSounds/soundGameOver.wav");
+			scoreManager.increaseTimesGamePlayed();
 		}
 
 		if (manager.dragon.struckBySpike) {
 			currentState = END_STATE_SPIKE;
-			scoreManager.timesGamePlayed = scoreManager.timesGamePlayed++;
+			playSound("./gameSounds/soundGameOver.wav");
+			scoreManager.increaseTimesGamePlayed();
 		}
 	}
 
 	public void drawGameState(Graphics g) {
 		g.drawImage(GamePanel.imgGameBackground, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
 				DragonRunnerMain.FRAME_HEIGHT, null);
-		
+
 		Font helvetica = new Font("Helvetica", Font.PLAIN, 30);
 		g.setFont(helvetica);
 		g.setColor(Color.ORANGE);
@@ -138,6 +143,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	/////////////////////////////////////////////
 	// END OF STATES
 	/////////////////////////////////////////////
+	
+	// PLAY SOUNDS
+	private void playSound(String fileName) {
+		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
+		sound.play();
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		repaint();
@@ -195,9 +206,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			// that's [s]
 			if (currentState == MENU_STATE) {
 				currentState = GAME_STATE;
+				playSound("./gameSounds/soundGameBegin.wav");
 				scoreManager.startGame();
 			} else if (currentState == INSTRUCTION_STATE) {
 				currentState = GAME_STATE;
+				playSound("./gameSounds/soundGameBegin.wav");
 				scoreManager.startGame();
 			}
 		}
@@ -205,6 +218,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == 73) {
 			// that's [i]
 			if (currentState == MENU_STATE) {
+				playSound("./gameSounds/soundGameSelect.wav");
 				currentState = INSTRUCTION_STATE;
 			}
 
@@ -212,9 +226,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		if (e.getKeyCode() == 82) {
 			// that's [r]
-			if ((currentState == END_STATE_ARROW) || (currentState == END_STATE_SPIKE)
-					|| (currentState == END_STATE_WIN)) {
+			if ((currentState == END_STATE_ARROW) || (currentState == END_STATE_SPIKE)) {
 				currentState = MENU_STATE;
+				playSound("./gameSounds/soundGameSelect.wav");
 				manager = new ObjectManagerK();
 			}
 		}

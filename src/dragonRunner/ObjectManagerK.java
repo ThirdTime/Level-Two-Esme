@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ObjectManagerK {
-
+	private final int FIFTH_OF_SECOND = 200;
+	private final int ONE_SECOND = 1000;
+	private final int FIVE_SECONDS = 5000;
 	Dragon dragon = new Dragon(80, 100);
 	PowerupBar powerupBar = new PowerupBar();
 	FireBreath fireBreath = new FireBreath();
@@ -38,25 +40,32 @@ public class ObjectManagerK {
 		dragon.ySpeed = 0;
 	}
 
+	public int getRandomNumberZeroToFiveSeconds(){
+		return new Random().nextInt(FIVE_SECONDS);
+	}
+	
+	public int getRandomNumberZeroishToOneSecond() {
+		return new Random().nextInt(ONE_SECOND) + FIFTH_OF_SECOND;
+	}
+	
 	// THE CLOUDS:
 	private long lastCloudCreated = 0;
+	int numZeroToFive = FIVE_SECONDS;
 
 	// Making the Cloud List
 	ArrayList<Cloud> cloudList = new ArrayList<>();
-
 	public void addCloudToList(Cloud cloud) {
 		cloudList.add(cloud);
 	}
 
 	// Randomly generating clouds
 	public void generateClouds() {
-		int re = new Random().nextInt(500000);
-		int cloudGeneratorPause = re;
-
-		if (System.currentTimeMillis() - lastCloudCreated >= cloudGeneratorPause) {
+		if (System.currentTimeMillis() - lastCloudCreated >= numZeroToFive) {
 			addCloudToList(
 					new Cloud(DragonRunnerMain.FRAME_WIDTH, new Random().nextInt(DragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastCloudCreated = System.currentTimeMillis();
+			numZeroToFive = getRandomNumberZeroToFiveSeconds();
+			
 		}
 	}
 
@@ -81,6 +90,7 @@ public class ObjectManagerK {
 
 	// THE ARROWS:
 	public long lastArrowFired = 0;
+	int numZeroishToOne = ONE_SECOND;
 
 	ArrayList<Arrow> arrowList = new ArrayList<>();
 
@@ -89,13 +99,11 @@ public class ObjectManagerK {
 	}
 
 	public void fireArrows() {
-		int r = new Random().nextInt(1000) + 500;
-		int arrowPause = r;
-
-		if (System.currentTimeMillis() - lastArrowFired >= arrowPause) {
+		if (System.currentTimeMillis() - lastArrowFired >= numZeroishToOne) {
 			addArrowToList(
 					new Arrow(DragonRunnerMain.FRAME_WIDTH, new Random().nextInt(DragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastArrowFired = System.currentTimeMillis();
+			numZeroishToOne = getRandomNumberZeroishToOneSecond();
 		}
 	}
 

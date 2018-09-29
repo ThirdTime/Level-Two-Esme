@@ -37,8 +37,9 @@ public class Dragon extends GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.ORANGE);
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.imgDragon, x, y, width, height, null);
+	//	g.setColor(Color.ORANGE);
+	//	g.fillRect(x, y, width, height);
 	}
 
 }
