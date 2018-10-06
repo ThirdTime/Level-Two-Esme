@@ -8,7 +8,7 @@ public class FireBreath extends GameObject{
 	PowerupBar powerUpBar = new PowerupBar();
 	private boolean currentlyDisplayingFire = false;
 	final static int FIREBREATH_X_POSITION = 80;
-	final int FIREBREATH_WIDTH = 80;
+	final static int FIREBREATH_WIDTH = 80;
 	
 	private int fireBreathSpeed;
 	public FireBreath() {
