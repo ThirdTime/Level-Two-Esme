@@ -1,6 +1,5 @@
 package dragonRunner;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Arrow extends GameObject {
@@ -23,8 +22,6 @@ public class Arrow extends GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(x, y, width, height);
-	//	g.drawImage(GamePanel.imgArrow, x, y, width, height, null);
+		g.drawImage(GamePanel.imgArrow, x, y, width, height, null);
 	}
 }

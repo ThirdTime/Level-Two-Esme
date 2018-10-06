@@ -9,6 +9,7 @@ public class ObjectManagerK {
 	private final int FIFTH_OF_SECOND = 200;
 	private final int ONE_SECOND = 1000;
 	private final int FIVE_SECONDS = 5000;
+	
 	Dragon dragon = new Dragon(80, 100);
 	PowerupBar powerupBar = new PowerupBar();
 	FireBreath fireBreath = new FireBreath();

@@ -1,14 +1,10 @@
 package dragonRunner;
 
 public class ScoreManager {
-	private int startTimeAsInt;
-	private int endTimeAsInt;
 	private static long gameStartTime;
 	private long gameEndTime;
-	private int timesGamePlayed;
 	private int highScore;
 	private int currentTime;
-	private int lastScore;
 
 	public void startGame() {
 		gameStartTime = System.currentTimeMillis();
@@ -23,12 +19,8 @@ public class ScoreManager {
 	}
 
 	public void calculateHighScore() {
-		if (timesGamePlayed == 1) {
+		if (highScore < currentTime) {
 			highScore = currentTime;
-		} else {
-			if (highScore < currentTime) {
-				highScore = currentTime;
-			} 
 		}
 	}
 
@@ -38,9 +30,5 @@ public class ScoreManager {
 
 	public int getCurrentTime() {
 		return currentTime;
-	}
-	
-	public void increaseTimesGamePlayed() {
-		timesGamePlayed++;
 	}
 }
