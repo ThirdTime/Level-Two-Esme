@@ -7,10 +7,12 @@ public class FireBreath extends GameObject{
 	
 	PowerupBar powerUpBar = new PowerupBar();
 	private boolean currentlyDisplayingFire = false;
+	final static int FIREBREATH_X_POSITION = 80;
+	final int FIREBREATH_WIDTH = 80;
 	
 	private int fireBreathSpeed;
 	public FireBreath() {
-		super(80, 0, 0, 0);
+		super(FIREBREATH_X_POSITION, 0, 0, 0);
 	}
 	
 	public boolean isFireCurrentlyDisplayed() {
@@ -19,7 +21,7 @@ public class FireBreath extends GameObject{
 	
 	public void fireFire() {
 		if(powerUpBar.getFullyCharged() == true) {
-			width = 80;
+			width = FIREBREATH_WIDTH;
 			height = DragonRunnerMain.FRAME_HEIGHT;
 			currentlyDisplayingFire = true;
 			fireBreathSpeed = 5;
@@ -40,7 +42,7 @@ public class FireBreath extends GameObject{
 			isAlive = false;
 			currentlyDisplayingFire = false;
 			fireBreathSpeed = 0;
-			x = 80;
+			x = FIREBREATH_X_POSITION;
 			width = 0;
 			height = 0;
 		}
