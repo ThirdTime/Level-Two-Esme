@@ -10,7 +10,23 @@ public class ObjectManagerK {
 	private final int ONE_SECOND = 1000;
 	private final int FIVE_SECONDS = 5000;
 	Dragon dragon = new Dragon(80, 100);
+	PowerupBar powerupBar = new PowerupBar();
+	FireBreath fireBreath = new FireBreath();
 
+	// MANAGING THE FIREBREATHING
+	public void fireFire() {
+		fireBreath.fireFire();
+	}
+
+	public void deleteBar() {
+		powerupBar.deleteBar();
+	}
+
+	public void increaseBar() {
+		powerupBar.increaseBar();
+	}
+
+	// THE DRAGON
 	public void dragonUp() {
 		dragon.flyUp();
 	}
@@ -23,20 +39,21 @@ public class ObjectManagerK {
 		dragon.ySpeed = 0;
 	}
 
-	public int getRandomNumberZeroToFiveSeconds(){
+	public int getRandomNumberZeroToFiveSeconds() {
 		return new Random().nextInt(FIVE_SECONDS);
 	}
-	
+
 	public int getRandomNumberZeroishToOneSecond() {
 		return new Random().nextInt(ONE_SECOND) + FIFTH_OF_SECOND;
 	}
-	
+
 	// THE CLOUDS:
 	private long lastCloudCreated = 0;
 	int numZeroToFive = FIVE_SECONDS;
 
 	// Making the Cloud List
 	ArrayList<Cloud> cloudList = new ArrayList<>();
+
 	public void addCloudToList(Cloud cloud) {
 		cloudList.add(cloud);
 	}
@@ -48,7 +65,7 @@ public class ObjectManagerK {
 					new Cloud(DragonRunnerMain.FRAME_WIDTH, new Random().nextInt(DragonRunnerMain.FRAME_HEIGHT / 2)));
 			lastCloudCreated = System.currentTimeMillis();
 			numZeroToFive = getRandomNumberZeroToFiveSeconds();
-			
+
 		}
 	}
 
@@ -61,13 +78,13 @@ public class ObjectManagerK {
 
 	public void loopGround() {
 		if (groundList.size() == 0) {
-			addGroundToList(new Ground(0, DragonRunnerMain.FRAME_HEIGHT- Ground.HEIGHT_OF_GROUND));
+			addGroundToList(new Ground(0, DragonRunnerMain.FRAME_HEIGHT - Ground.HEIGHT_OF_GROUND));
 		}
 
 		Ground lastGroundOnScreen = groundList.get(groundList.size() - 1);
 		if (lastGroundOnScreen.x + lastGroundOnScreen.width < DragonRunnerMain.FRAME_WIDTH) {
-			addGroundToList(
-					new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width, DragonRunnerMain.FRAME_HEIGHT- Ground.HEIGHT_OF_GROUND));
+			addGroundToList(new Ground(lastGroundOnScreen.x + lastGroundOnScreen.width,
+					DragonRunnerMain.FRAME_HEIGHT - Ground.HEIGHT_OF_GROUND));
 		}
 	}
 
@@ -106,7 +123,7 @@ public class ObjectManagerK {
 			lastSpikeGenerated = System.currentTimeMillis();
 		}
 	}
-	
+
 	// COLLISIONS:
 	public void checkCollisions() {
 		for (Arrow a : arrowList) {
@@ -115,10 +132,23 @@ public class ObjectManagerK {
 				dragon.struckByArrow = true;
 			}
 		}
+
 		for (Spikes s : spikesList) {
 			if (dragon.collisionBox.intersects(s.collisionBox)) {
 				dragon.isAlive = false;
 				dragon.struckBySpike = true;
+			}
+		}
+
+		for (Spikes s : spikesList) {
+			if (fireBreath.collisionBox.intersects(s.collisionBox)) {
+				s.isAlive = false;
+			}
+		}
+
+		for (Arrow a : arrowList) {
+			if (fireBreath.collisionBox.intersects(a.collisionBox)) {
+				a.isAlive = false;
 			}
 		}
 	}
@@ -126,6 +156,8 @@ public class ObjectManagerK {
 	// UPDATE AND DRAW:
 	public void update() {
 		dragon.update();
+		powerupBar.update();
+		fireBreath.update();
 		generateClouds();
 		loopGround();
 		fireArrows();
@@ -144,15 +176,19 @@ public class ObjectManagerK {
 	}
 
 	public void draw(Graphics g) {
-		
+
 		this.drawArrayList(cloudList, g);
 		this.drawArrayList(arrowList, g);
-		this.drawArrayList(groundList, g);
+		if (fireBreath.isFireCurrentlyDisplayed() && fireBreath.isAlive) {
+			fireBreath.draw(g);
+		}
 		dragon.draw(g);
+		this.drawArrayList(groundList, g);
 		this.drawArrayList(spikesList, g);
+		powerupBar.draw(g);
+
 	}
 
-	// MISC METHODS
 	// PURGE OBJECTS
 	public void purgeObjects(ArrayList<? extends GameObject> list) {
 		for (int i = list.size() - 1; i >= 0; i--) {
