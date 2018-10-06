@@ -1,6 +1,5 @@
 package dragonRunner;
 
-import java.awt.Color;
 //imports
 import java.awt.Graphics;
 import java.util.ArrayList;

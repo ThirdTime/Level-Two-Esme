@@ -14,6 +14,11 @@ public class PowerupBar extends GameObject implements ActionListener {
 	private Timer testTimer;
 	private boolean fullyCharged = false;
 
+	final int POWERUP_BAR_BKG_X_POSITION = 40;
+	final int POWERUP_BAR_BKG_Y_POSITION = 15;
+	final int POWERUP_BAR_BKG_WIDTH = 130;
+	final int POWERUP_BAR_BKG_HEIGHT = 20;
+	
 	public long getTimeBarDepleted(){
 		return timeBarDepleted;
 	}
@@ -53,7 +58,7 @@ public class PowerupBar extends GameObject implements ActionListener {
 
 	public void draw(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(40, 15, 130, 20);
+		g.fillRect(POWERUP_BAR_BKG_X_POSITION, POWERUP_BAR_BKG_Y_POSITION, POWERUP_BAR_BKG_WIDTH, POWERUP_BAR_BKG_HEIGHT);
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
 	}
