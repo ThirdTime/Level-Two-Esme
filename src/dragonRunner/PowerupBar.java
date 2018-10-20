@@ -11,7 +11,7 @@ public class PowerupBar extends GameObject implements ActionListener {
 
 	private long timeBarDepleted;
 	private int systemCurrentTimeInSec;
-	private Timer testTimer;
+	private Timer powerUpTimer;
 	private boolean fullyCharged = false;
 
 	final int POWERUP_BAR_BKG_X_POSITION = 40;
@@ -29,8 +29,8 @@ public class PowerupBar extends GameObject implements ActionListener {
 	
 	public PowerupBar() {
 		super(45, 18, 20, 16);
-		testTimer = new Timer(1000, this);
-		testTimer.start();
+		powerUpTimer = new Timer(1000, this);
+		powerUpTimer.start();
 	}
 
 	public void deleteBar() {
