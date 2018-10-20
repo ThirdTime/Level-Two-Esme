@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage imgSpikes;
 	public static BufferedImage imgGround;
 	public static BufferedImage imgDragon;
+	public static BufferedImage imgFire;
 
 	ObjectManagerK manager = new ObjectManagerK();
 	ScoreManager scoreManager = new ScoreManager();
@@ -45,16 +46,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		gameTimer = new Timer(1000 / 60, this);
 
 		try {
-			imgInstructionsStateBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/instructionStateImg.jpg"));
-			imgMenuStateBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/startStateImg.jpg"));
-			imgSpikeDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/spikeDeathScreenImg.jpg"));
-			imgArrowDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/arrowDeathScreenImg.jpg"));
+			imgInstructionsStateBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/instructionsState.png"));
+			imgMenuStateBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/startState.png"));
+			imgSpikeDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/spikeDeath.jpg"));
+			imgArrowDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/arrowDeath.jpg"));
 			imgGameBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGameBackground.png"));
-			imgCloud = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgCloud.png"));
-			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/arrowIMGdarker.png"));
-			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/bigSpikesIMG.png"));
-			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/groundIMG.jpg"));
-			imgDragon = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/dragonIMG.jpg"));
+			imgCloud = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/cloud.png"));
+			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/arrow.png"));
+			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/spikes.png"));
+			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/ground.jpg"));
+			imgDragon = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/Dragon.png"));
+			imgFire = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/fire.png"));
 
 
 		} catch (IOException e) {
