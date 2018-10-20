@@ -46,7 +46,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		gameTimer = new Timer(1000 / 60, this);
 
 		try {
-			imgInstructionsStateBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/instructionsState.png"));
+			imgInstructionsStateBackground = ImageIO
+					.read(this.getClass().getResourceAsStream("./gameImages/instructionsState.png"));
 			imgMenuStateBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/startState.png"));
 			imgSpikeDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/spikeDeath.jpg"));
 			imgArrowDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/arrowDeath.jpg"));
@@ -57,7 +58,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/ground.jpg"));
 			imgDragon = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/Dragon.png"));
 			imgFire = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/fire.png"));
-
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -72,8 +72,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawMenuState(Graphics g) {
-		g.drawImage(GamePanel.imgMenuStateBackground, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH, DragonRunnerMain.FRAME_HEIGHT,
-				null);
+		g.drawImage(GamePanel.imgMenuStateBackground, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
+				DragonRunnerMain.FRAME_HEIGHT, null);
 	}
 	/////////////////////////////////////////////
 
@@ -122,12 +122,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void drawArrowState(Graphics g) {
 		g.drawImage(GamePanel.imgArrowDeathBackground, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
 				DragonRunnerMain.FRAME_HEIGHT, null);
-		
+
 		Font helvetica = new Font("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.YELLOW);
-		g.drawString(""+scoreManager.getCurrentTime(), 600, 230);
-		g.drawString(""+scoreManager.getHighScore(), 660, 305);
+		g.drawString("" + scoreManager.getCurrentTime(), 600, 230);
+		g.drawString("" + scoreManager.getHighScore(), 660, 305);
 	}
 	/////////////////////////////////////////////
 
@@ -138,18 +138,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void drawSpikeState(Graphics g) {
 		g.drawImage(GamePanel.imgSpikeDeathBackground, WIDTH, HEIGHT, DragonRunnerMain.FRAME_WIDTH,
 				DragonRunnerMain.FRAME_HEIGHT, null);
-		
+
 		Font helvetica = new Font("Helvetica", Font.PLAIN, 80);
 		g.setFont(helvetica);
 		g.setColor(Color.YELLOW);
-		g.drawString(""+scoreManager.getCurrentTime(), 600, 230);
-		g.drawString(""+scoreManager.getHighScore(), 660, 305);
+		g.drawString("" + scoreManager.getCurrentTime(), 600, 230);
+		g.drawString("" + scoreManager.getHighScore(), 660, 305);
 	}
 
 	/////////////////////////////////////////////
 	// END OF STATES
 	/////////////////////////////////////////////
-	
+
 	// PLAY SOUNDS
 	private void playSound(String fileName) {
 		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
@@ -196,15 +196,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 
-		if (e.getKeyCode() == 38) {
+		if (e.getKeyCode() == 38) { // Keycode: Up Arrow
 			manager.dragonUp();
 		}
 
-		if (e.getKeyCode() == 40) {
+		if (e.getKeyCode() == 40) { // Keycode: Down Arrow
 			manager.dragonDown();
 		}
 
-		if (e.getKeyCode() == 83) {
+		if (e.getKeyCode() == 83) { // Keycode: S
 			if (currentState == MENU_STATE) {
 				currentState = GAME_STATE;
 				playSound("./gameSounds/soundGameBegin.wav");
@@ -216,7 +216,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 
-		if (e.getKeyCode() == 73) {
+		if (e.getKeyCode() == 73) { // Keycode: I
 			if (currentState == MENU_STATE) {
 				playSound("./gameSounds/soundGameSelect.wav");
 				currentState = INSTRUCTION_STATE;
@@ -224,18 +224,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		}
 
-		if (e.getKeyCode() == 82) {
+		if (e.getKeyCode() == 82) { // Keycode: R
 			if ((currentState == END_STATE_ARROW) || (currentState == END_STATE_SPIKE)) {
 				currentState = MENU_STATE;
 				playSound("./gameSounds/soundGameSelect.wav");
 				manager = new ObjectManagerK();
 			}
 		}
-		
-		if (e.getKeyCode() == 32) {
+
+		if (e.getKeyCode() == 32) { // Keycode: Space
 			manager.deleteBar();
 			manager.fireFire();
-			
+
 		}
 
 	}
@@ -243,11 +243,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 
-		if (e.getKeyCode() == 38) {
+		if (e.getKeyCode() == 38) { // Keycode: Up Arrow
 			manager.dragonStop();
 		}
 
-		if (e.getKeyCode() == 40) {
+		if (e.getKeyCode() == 40) { // Keycode: Down Arrow
 			manager.dragonStop();
 		}
 	}
