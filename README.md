@@ -1,1 +1,1 @@
-<a href="https://github.com/ThirdTime/Level-Two-Esme/blob/master/DragonRun.jar?raw=true">Click here to play Dragon Run: a side-scroller game</a>
+<a href="https://github.com/ThirdTime/Level-Two-Esme/blob/master/DragonRun.jar?raw=true">Click here to download and play Dragon Run</a>
