@@ -1,4 +1,4 @@
-package dragonRunner;
+
 
 import java.applet.AudioClip;
 import java.awt.Color;
@@ -47,17 +47,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		try {
 			imgInstructionsStateBackground = ImageIO
-					.read(this.getClass().getResourceAsStream("./gameImages/instructionsState.png"));
-			imgMenuStateBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/startState.png"));
-			imgSpikeDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/spikeDeath.jpg"));
-			imgArrowDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/arrowDeath.jpg"));
-			imgGameBackground = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/imgGameBackground.png"));
-			imgCloud = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/cloud.png"));
-			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/arrow.png"));
-			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/spikes.png"));
-			imgGround = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/ground.jpg"));
-			imgDragon = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/Dragon.png"));
-			imgFire = ImageIO.read(this.getClass().getResourceAsStream("./gameImages/fire.png"));
+					.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/instructionsState.png"));
+			imgMenuStateBackground = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/startState.png"));
+			imgSpikeDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/spikeDeath.jpg"));
+			imgArrowDeathBackground = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/arrowDeath.jpg"));
+			imgGameBackground = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/imgGameBackground.png"));
+			imgCloud = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/cloud.png"));
+			imgArrow = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/arrow.png"));
+			imgSpikes = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/spikes.png"));
+			imgGround = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/ground.jpg"));
+			imgDragon = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/dragon.png"));
+			imgFire = ImageIO.read(this.getClass().getResourceAsStream("dragonRunner/gameImages/fire.png"));
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -92,12 +92,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		scoreManager.calculateCurrentTime();
 		if (manager.dragon.struckByArrow) {
 			currentState = END_STATE_ARROW;
-			playSound("./gameSounds/soundGameOver.wav");
+			playSound("dragonRunner/gameSounds/soundGameOver.wav");
 		}
 
 		if (manager.dragon.struckBySpike) {
 			currentState = END_STATE_SPIKE;
-			playSound("./gameSounds/soundGameOver.wav");
+			playSound("dragonRunner/gameSounds/soundGameOver.wav");
 		}
 	}
 
@@ -207,18 +207,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == 83) { // Keycode: S
 			if (currentState == MENU_STATE) {
 				currentState = GAME_STATE;
-				playSound("./gameSounds/soundGameBegin.wav");
+				playSound("dragonRunner/gameSounds/soundGameBegin.wav");
 				scoreManager.startGame();
 			} else if (currentState == INSTRUCTION_STATE) {
 				currentState = GAME_STATE;
-				playSound("./gameSounds/soundGameBegin.wav");
+				playSound("dragonRunner/gameSounds/soundGameBegin.wav");
 				scoreManager.startGame();
 			}
 		}
 
 		if (e.getKeyCode() == 73) { // Keycode: I
 			if (currentState == MENU_STATE) {
-				playSound("./gameSounds/soundGameSelect.wav");
+				playSound("dragonRunner/gameSounds/soundGameSelect.wav");
 				currentState = INSTRUCTION_STATE;
 			}
 
@@ -227,7 +227,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == 82) { // Keycode: R
 			if ((currentState == END_STATE_ARROW) || (currentState == END_STATE_SPIKE)) {
 				currentState = MENU_STATE;
-				playSound("./gameSounds/soundGameSelect.wav");
+				playSound("dragonRunner/gameSounds/soundGameSelect.wav");
 				manager = new ObjectManagerK();
 			}
 		}

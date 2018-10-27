@@ -1,4 +1,4 @@
-package dragonRunner;
+
 
 public class ScoreManager {
 	private static long gameStartTime;
